@@ -85,46 +85,6 @@ public class StudentsAction {
 	}
 	
 	
-	public int formIds(String rlt){
-		System.out.println("formIds");
-		
-		connect();
-		relatedTeacher = UsersAction.ID;
-		System.out.println(relatedTeacher);
-		
-		String sql = "select "+rlt+" from teachers where userid ="+relatedTeacher;
-		System.out.println(sql);
-
-		String ori = "";
-		try{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//ªÚ’ﬂwhile(rs.next()) 
-				   ori = rs.getString(1);
-				   if(ori == null){
-				        ori = "";
-				   }
-			}
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-		disconnect();
-		
-		String regex = "[0-9]+";
-        Pattern pat = Pattern.compile(regex);
-        Matcher mat = pat.matcher(ori);
-        int i = 1;
-        while (mat.find())
-        {
-            System.out.println(mat.group());
-            String val = mat.group();
-            int value = Integer.parseInt(val);
-            ids[i] = value;
-            i ++;
-        }
-		return i;
-	}
 	
 	public void addRelation(String tID, String rlt, String sID){
 		connect();

@@ -171,45 +171,6 @@ public class TeachersAction {
 		disconnect();
 	}
 	
-	public ArrayList<Teachers> queryInfo(String teacherId, int i){	
-		
-		connect();
-		ArrayList<Teachers> teachers = new ArrayList<Teachers>();
-		System.out.println("queryInfo");
-		
-		for(int j = 1; j <= i; j++){
-			String sql = "select * from teachers where id ="+ids[j];//warning type error
-			System.out.println(sql);
-			try{
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery();
-				while(rs.next())
-				{
-					teachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12)));
-				}
-			}catch(Exception e)
-			{
-				System.out.println(e.getMessage());
-			}
-		}
-		return teachers;
-	}
-	
-	public void search(String sql){
-		connect();
-		try{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{
-				allTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12)));
-			}
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-	
 	
    
 	public void queryApply(){
