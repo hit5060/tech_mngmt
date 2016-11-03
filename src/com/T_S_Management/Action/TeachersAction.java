@@ -200,38 +200,7 @@ public class TeachersAction {
 		return "SUCCESS";
 	}
 	
-	public String addAccept(){
-		String rlt = "accepted";
-		connect();
-		relatedTeacher = UsersAction.ID;
-		System.out.println(relatedTeacher);
-		
-		String sql = "select id from teachers where userid ="+relatedTeacher;
-		System.out.println(sql);
-
-		String a = "";
-		try{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//ªÚ’ﬂwhile(rs.next()) 
-				   a = rs.getString(1);
-				   if(a == null){
-				        a = "";
-				   }
-			}
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-		disconnect();
-		
-		System.out.println("sId = "+relatedStudent+"tId = "+a);
-		passID = relatedStudent;
-		StudentsAction SA = new StudentsAction(); 
-		SA.addAccept();
-		addRelation(a,rlt,relatedStudent);
-		return "SUCCESS";
-	}
+	
 	
 	public String addReject(){
 		String rlt = "rejected";
