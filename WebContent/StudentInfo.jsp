@@ -4,26 +4,46 @@
 		<%@ taglib prefix="s" uri="/struts-tags"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 		<html>
 
+
+<head>
+ <link rel="stylesheet" href="css/main.css">
+<title>申请管理</title>
 <style type="text/css">
 table {
-	border: 0px #CCCCCC solid;
+	text-align:center;
+	border:none;
 	width: 80%;
+	font-size:1.5em;
 }
+th{
+	border-right:1px solid #ccc;
+	width:6em;
+	}
 
-td, th {
-	height: 30px;
-	border: #CCCCCC 0px solid;
+td{
+	height: 2em;
+	border:none;
 	text-align: center;
 }
 
 body {
-	font-family: 微软雅黑, 宋体;
-	font-size: 1em;
-	color: black;
+	font-family: "微软雅黑";
+	font-size: 1.5em;
 }
+h2{
+	text-align:center;
+	font-size:5em;
+	margin:0;
+}
+div{
+	text-align:center;
+	margin:1em;
+}
+a{
+	display:block;
+	padding:1em;
+	}
 </style>
-<head>
-<title>申请管理</title>
 </head>
 
 <body>
@@ -55,15 +75,10 @@ body {
 		String sql = "SELECT * FROM students where userid="+ temp;
         ResultSet rs = statement.executeQuery(sql);  
     %> 
-    
-	<div style="text-align: center;">
-		<h2>
-			<font size=9em>详细信息</font>
-		</h2>
-	</div>
-	<br>
-	<br>
-	<table align="center">
+		<h2>详细信息</h2>
+ <div>
+	<center>
+	<table>
 		<%  
             while (rs.next()) {  
         %>
@@ -73,11 +88,11 @@ body {
                     out.print("姓名");  
                 %>
 			</th>
-			<th>
+			<td>
 				<%  
 					out.print(rs.getString(2));
                 %>
-			</th>
+			</td>
 		</tr>
 		
 		<tr>
@@ -86,11 +101,11 @@ body {
                     out.print("学号");  
                 %>
 			</th>
-			<th>
+			<td>
 				<%  
 					out.print(rs.getString(4));
                 %>
-			</th>
+			</td>
 		</tr>
 		
 		<tr>
@@ -99,11 +114,11 @@ body {
                     out.print("专业");  
                 %>
 			</th>
-			<th>
+			<td>
 				<%  
 					out.print(rs.getString(3));
                 %>
-			</th>
+			</td>
 		</tr>
 		
 		
@@ -113,11 +128,11 @@ body {
                     out.print("电话号码");  
                 %>
 			</th>
-			<th>
+			<td>
 				<%  
 				 	out.print(rs.getString(5));
                 %>
-			</th>
+			</td>
 		</tr>
 		
 		<tr>
@@ -126,11 +141,11 @@ body {
                     out.print("个人简介");  
                 %>
 			</th>
-			<th>
+			<td>
 				<%  
 					out.print(rs.getString(7));
                 %>
-			</th>
+			</td>
 		</tr>
 		
 		<tr>
@@ -139,11 +154,11 @@ body {
                     out.print("邮箱");  
                 %>
 			</th>
-			<th>
+			<td>
 				<%  
 					out.print(rs.getString(8));
                 %>
-			</th>
+			</td>
 		</tr>
 		
 		<%  
@@ -222,7 +237,7 @@ body {
             }  
         %> --%>
 	</table>
-	
+	</center>
 	
 	<%  
         rs.close();  
@@ -230,10 +245,8 @@ body {
         connection.close();  
     %>
     
-    <a href="javascript:;" onclick="location='StudentInfoChange.jsp'"><input
+    	<a href="javascript:;" onclick="location='StudentInfoChange.jsp'"><input
 			type=button value="修改" /></a>
-	<br>
-	<div style="text-align: center;">
 		<a href="javascript:;" onclick="location='StudentIndex.jsp'"><input
 			type=button value="返回主页" /></a>
 	</div>

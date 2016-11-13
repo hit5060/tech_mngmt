@@ -12,27 +12,37 @@
 		<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.T_S_Management.Action.TeachersAction,com.opensymphony.xwork2.ActionContext"%>
 		<%@ page contentType="text/html;charset=utf-8"%>
 		<%@ taglib prefix="s" uri="/struts-tags"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-		<html>
-
+<html>
+<head>
+<link rel="stylesheet" href="css/main.css">
 <style type="text/css">
 table {
-	border: 0px #CCCCCC solid;
+	text-align:center;
+	border:none;
 	width: 80%;
+	margin-top:2em;
+	font-size:1.5em;
 }
 
-td, th {
-	height: 30px;
-	border: #CCCCCC 0px solid;
-	text-align: center;
+td{
+	border:none;
 }
 
 body {
-	font-family: 微软雅黑, 宋体;
-	font-size: 1em;
-	color: black;
+	font-family: "微软雅黑";
+	font-size: 1.5em;
+}
+
+h2{
+	text-align:center;
+	font-size:3em;
+	margin:0;
+}
+div{
+	text-align:center;
+
 }
 </style>
-<head>
 <title>搜索结果</title>
 </head>
 
@@ -70,15 +80,10 @@ body {
        
     %> 
     
-	<div style="text-align: center;">
-		<h2>
-			<font size=9em>搜索结果</font>
-		</h2>
-	</div>
-	<br>
-	<br>
-	
-	<table align="center">
+	<div>
+		<h2>搜索结果</h2>
+<center>
+	<table>
 		<tr>
 			<th>
 				<%  
@@ -132,9 +137,7 @@ body {
         connection.close();  
     %>
     </table>
-
-    
-    <div style="text-align: center;">
+</center>
 		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
 			type=button value="返回" /></a>
 	</div>

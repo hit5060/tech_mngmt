@@ -1,39 +1,38 @@
-<%@ page language="java" pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>所有老师</title>
-</head>
-<body>
-</body>
-</html><span style="font-size: 12px;"><span style="font-size: 14px;">
-		<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.T_S_Management.Action.TeachersAction,com.opensymphony.xwork2.ActionContext"%>
+	<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.T_S_Management.Action.TeachersAction,com.opensymphony.xwork2.ActionContext"%>
 		<%@ page contentType="text/html;charset=utf-8"%>
 		<%@ taglib prefix="s" uri="/struts-tags"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-		<html>
-
+<html>
+<head>
+<title>所有老师</title>
+<link rel="stylesheet" href="css/main.css">
 <style type="text/css">
 table {
-	border: 0px #CCCCCC solid;
+	text-align:center;
+	border:none;
 	width: 80%;
+	margin-top:2em;
+	font-size:1.5em;
 }
 
-td, th {
-	height: 30px;
-	border: #CCCCCC 0px solid;
-	text-align: center;
+td{
+	border:none;
 }
 
 body {
-	font-family: 微软雅黑, 宋体;
-	font-size: 1em;
-	color: black;
+	font-family: "微软雅黑";
+	font-size: 1.5em;
+}
+
+h2{
+	text-align:center;
+	font-size:3em;
+	margin:0;
+}
+div{
+	text-align:center;
+
 }
 </style>
-<head>
-<title>所有教师</title>
 </head>
 
 <body>
@@ -61,16 +60,10 @@ body {
 		String sql = "SELECT * FROM teachers ";
         ResultSet rs = statement.executeQuery(sql);  
     %> 
-    
-	<div style="text-align: center;">
-		<h2>
-			<font size=9em>所有教师</font>
-		</h2>
-	</div>
-	<br>
-	<br>
-	
-	<table align="center">
+		<h2>所有教师</h2>
+		<div>
+	<center>
+	<table>
 		<tr>
 			<th>
 				<%  
@@ -108,15 +101,16 @@ body {
 			<td>
 				<a
 				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(12)%>">查看详细信息</a>
-				<%-- <a
-				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a> --%>
+				<br>
+				<a
+				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a>
 			</td>
 		</tr>
 		<%  
             }  
         %>
 	</table>
-	
+	</center>
 	
 	<%  
         rs.close();  
@@ -129,5 +123,6 @@ body {
     
     <a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
 			type=button value="返回" /></a>
+</div>
 </body>
 </html>
