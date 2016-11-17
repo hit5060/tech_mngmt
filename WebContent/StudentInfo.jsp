@@ -1,33 +1,35 @@
 <span style="font-size: 12px;"><span style="font-size: 14px;">
-		<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.T_S_Management.Action.TeachersAction,com.opensymphony.xwork2.ActionContext"%>
+		<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.T_S_Management.Action.StudentsAction,com.opensymphony.xwork2.ActionContext"%>
 		<%@ page contentType="text/html;charset=utf-8"%>
 		<%@ taglib prefix="s" uri="/struts-tags"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 		<html>
 
+
 <head>
-<link rel="stylesheet" href="css/main.css">
+ <link rel="stylesheet" href="css/main.css">
+<title>申请管理</title>
 <style type="text/css">
 table {
 	text-align:center;
 	border:none;
 	width: 80%;
-	margin-top:2em;
 	font-size:1.5em;
 }
-
 th{
 	border-right:1px solid #ccc;
 	width:6em;
 	}
+
 td{
+	height: 2em;
 	border:none;
+	text-align: center;
 }
 
 body {
 	font-family: "微软雅黑";
 	font-size: 1.5em;
 }
-
 h2{
 	text-align:center;
 	font-size:5em;
@@ -35,10 +37,13 @@ h2{
 }
 div{
 	text-align:center;
-
+	margin:1em;
 }
+a{
+	display:block;
+	padding:1em;
+	}
 </style>
-<title>详细信息</title>
 </head>
 
 <body>
@@ -57,23 +62,22 @@ div{
         //数据库名   
         String dbName = "TSM";  
         //表名   
-        String tableName = "teachers";  
+        String tableName = "studenets";  
         //联结字符串   
         String url = "jdbc:mysql://localhost:3306/" + dbName + "?user="  + userName + "&password=" + userPasswd;  
         Class.forName("com.mysql.jdbc.Driver").newInstance();  
         Connection connection = DriverManager.getConnection(url);  
         Statement statement = connection.createStatement();  
-       	TeachersAction a = new TeachersAction();
+       	StudentsAction a = new StudentsAction();
         String temp;
-		temp = ActionContext.getContext().get("teacherID").toString();
+		temp = ActionContext.getContext().get("studentID").toString();
 		System.out.println(temp);
-		String sql = "SELECT * FROM teachers where userid="+ temp;
+		String sql = "SELECT * FROM students where userid="+ temp;
         ResultSet rs = statement.executeQuery(sql);  
     %> 
-    
-	<div>
 		<h2>详细信息</h2>
-<center>
+ <div>
+	<center>
 	<table>
 		<%  
             while (rs.next()) {  
@@ -94,12 +98,12 @@ div{
 		<tr>
 			<th>
 				<%  
-                    out.print("所在学院");  
+                    out.print("学号");  
                 %>
 			</th>
 			<td>
 				<%  
-					out.print(rs.getString(13));
+					out.print(rs.getString(4));
                 %>
 			</td>
 		</tr>
@@ -107,7 +111,7 @@ div{
 		<tr>
 			<th>
 				<%  
-                    out.print("职称");  
+                    out.print("专业");  
                 %>
 			</th>
 			<td>
@@ -117,18 +121,6 @@ div{
 			</td>
 		</tr>
 		
-		<tr>
-			<th>
-				<%  
-                    out.print("办公地点");  
-                %>
-			</th>
-			<td>
-				<%  
-					out.print(rs.getString(4));
-                %>
-			</td>
-		</tr>
 		
 		<tr>
 			<th>
@@ -245,16 +237,18 @@ div{
             }  
         %> --%>
 	</table>
-	
 	</center>
+	
 	<%  
         rs.close();  
         statement.close();  
         connection.close();  
     %>
     
-		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
-			type=button value="返回" /></a>
+    	<a href="javascript:;" onclick="location='StudentInfoChange.jsp'"><input
+			type=button value="修改" /></a>
+		<a href="javascript:;" onclick="location='StudentIndex.jsp'"><input
+			type=button value="返回主页" /></a>
 	</div>
 </body>
 </html>

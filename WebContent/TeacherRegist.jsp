@@ -11,33 +11,40 @@ function display_alert()
 
 <html>
 <head>
+ <link rel="stylesheet" href="css/main.css">
 <style type="text/css">
-body {
-	font-family: 微软雅黑, 宋体;
-	font-size: 1.5em;
-	color: black;
+table {
+	border: 0px #CCCCCC solid;
+	width: 50%;
+	text-align:center;
 }
+h2{
+	font-size:5em;
+	font-family:"微软雅黑";
+	margin:0;
+}
+
 </style>
 <title>教师注册</title>
 </head>
 
 <body>
 	<%-- <s:property value="tips"/> --%>
-	<div id="formbackground"
+<!-- 	<div id="formbackground"
 		style="position: absolute; width: 100%; height: 100%; z-index: -1">
 		<img src="imge/image2.jpg" height="100%" width="100%" />
-	</div>
+	</div> -->
 	<div style="text-align: center;">
 		<h2>教师注册</h2>
 	</div>
 	<center>
+	<table>
 		<s:form action="TeacherRegist">
 			<s:textfield name="nuserId" label="用户名" />
 			<s:textfield name="npassword" label="密码" />
-			<div align="center">
-				<s:submit value="确定" />
-			</div>
+			<s:submit value="确定" />
 		</s:form>
+	</table>
 	</center>
 	<div style="text-align: center;">
 		<a href="javascript:;" onclick="location='Login.jsp'"><input

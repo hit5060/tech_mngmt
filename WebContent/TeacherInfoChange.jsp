@@ -5,11 +5,34 @@
 
 <html>
 <head>
+<link rel="stylesheet" href="css/main.css">
 <style type="text/css">
+table {
+	text-align:center;
+	border:none;
+	width: 80%;
+	font-size:1.5em;
+}
+th{
+	border-right:1px solid #ccc;
+	width:6em;
+	}
+
+td{
+	height: 2em;
+	border:none;
+	text-align: center;
+}
+
 body {
-	font-family: 微软雅黑, 宋体;
+	font-family: "微软雅黑";
 	font-size: 1.5em;
-	color: black;
+}
+
+h2{
+	font-size:5em;
+	font-family:"微软雅黑";
+	margin:0;
 }
 </style>
 <title>教师信息修改</title>
@@ -23,8 +46,8 @@ body {
 	</div> -->
 	<div style="text-align: center;">
 		<h2>教师信息修改</h2>
-	</div>
 	<center>
+	<table>
 		<s:form action="modifyTeacher">
 			<s:textfield name="name" label="姓名" />
 			<s:textfield name="college" label="学院" />
@@ -32,17 +55,13 @@ body {
 			<s:textfield name="office" label="办公室" />
 			<s:textfield name="tel" label="电话" />
 			<s:textfield name="mail" label="邮箱" />
-			<s:textfield name="introduce" label="简介" />
-			
-			
-			<div align="center">
-				<s:submit value="修改" />
-			</div>
+			<s:textarea  name="introduce" label="简介" />
+			<s:submit value="修改" />
 		</s:form>
+		</table>
 	</center>
-	<div style="text-align: center;">
-		<a href="javascript:;" onclick="location='Login.jsp'"><input
-			type=button value="返回登陆界面" /></a>
+		<a href="javascript:;" onclick="location='TeacherIndex.jsp'"><input
+			type=button value="返回主页" /></a>
 	</div>
 </body>
 </html>

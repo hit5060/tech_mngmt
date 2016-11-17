@@ -16,7 +16,7 @@
 		border: 0;
 		font-size: 100%;
 		font: inherit;
-		vertical-align: middle;
+		vertical-align: baseline;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -1615,7 +1615,7 @@
 
 	body, input, select, textarea {
 		color: #767d85;
-		font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+		font-family: "Open Sans", Arial, Helvetica, sans-serif;
 		font-size: 13pt;
 		font-weight: 300;
 		line-height: 1.65;
@@ -1662,12 +1662,11 @@
 		}
 
 	a {
-		color: #ccf;
-		text-decoration: none;
+		color: #25a2c3;
+		text-decoration: underline;
 	}
 
 		a:hover {
-			color: #96c;
 			text-decoration: none;
 		}
 
@@ -1687,7 +1686,7 @@
 	h1, h2, h3, h4, h5, h6 {
 		color: #727a82;
 		font-weight: 700;
-		font-family: "微软雅黑", sans-serif;
+		font-family: "Montserrat", sans-serif;
 		line-height: 1.5;
 		margin: 0 0 1em 0;
 	}
@@ -1844,9 +1843,9 @@
 	label {
 		color: #727a82;
 		display: block;
-		font-size: 1em;
+		font-size: 0.9em;
 		font-weight: 700;
-		margin: 0 0 0 0;
+		margin: 0 0 1em 0;
 	}
 
 	input[type="text"],
@@ -1866,7 +1865,7 @@
 		color: inherit;
 		display: block;
 		outline: 0;
-		padding: 0;
+		padding: 0 1em;
 		text-decoration: none;
 		width: 100%;
 	}
@@ -1927,8 +1926,8 @@
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2em;
-		line-height: 2em;
+		height: 3.5em;
+		line-height: 3.5em;
 	}
 
 	textarea {
@@ -1938,13 +1937,13 @@
 	input[type="checkbox"],
 	input[type="radio"] {
 		-moz-appearance: none;
-		//-webkit-appearance: none;
+		-webkit-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		display: inline-block;
-		//float: left;
-		//margin-right: -2em;
-		opacity: 1;
+		display: block;
+		float: left;
+		margin-right: -2em;
+		opacity: 0;
 		width: 1em;
 		z-index: -1;
 	}
@@ -2345,7 +2344,7 @@
 			font-size: 0.9em;
 			font-weight: 700;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: middle;
+			text-align: left;
 		}
 
 		table thead {
@@ -2404,9 +2403,9 @@
 		cursor: pointer;
 		display: inline-block;
 		font-family: "Montserrat", sans-serif;
-		height: 3em;
-		line-height: 3em;
-		padding: 0 2em;
+		height: 3.5em;
+		line-height: 3.5em;
+		padding: 0 3.5em;
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
@@ -2418,7 +2417,7 @@
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: #8080ff;
+			background-color: #f78a76;
 		}
 
 		input[type="submit"]:active,
@@ -2426,7 +2425,7 @@
 		input[type="button"]:active,
 		button:active,
 		.button:active {
-			background-color: #988fd6;
+			background-color: #f56046;
 		}
 
 		input[type="submit"].icon,

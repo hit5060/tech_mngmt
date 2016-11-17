@@ -4,30 +4,33 @@
 		<%@ taglib prefix="s" uri="/struts-tags"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 		<html>
 
+
 <head>
-<link rel="stylesheet" href="css/main.css">
+ <link rel="stylesheet" href="css/main.css">
+<title>教师个人信息</title>
 <style type="text/css">
 table {
 	text-align:center;
 	border:none;
 	width: 80%;
-	margin-top:2em;
 	font-size:1.5em;
+	
 }
-
 th{
 	border-right:1px solid #ccc;
 	width:6em;
 	}
+
 td{
+	height: 2em;
 	border:none;
+	text-align: center;
 }
 
 body {
 	font-family: "微软雅黑";
 	font-size: 1.5em;
 }
-
 h2{
 	text-align:center;
 	font-size:5em;
@@ -35,10 +38,9 @@ h2{
 }
 div{
 	text-align:center;
-
+	margin:1em;
 }
 </style>
-<title>详细信息</title>
 </head>
 
 <body>
@@ -71,8 +73,8 @@ div{
         ResultSet rs = statement.executeQuery(sql);  
     %> 
     
-	<div>
 		<h2>详细信息</h2>
+<div>
 <center>
 	<table>
 		<%  
@@ -245,16 +247,20 @@ div{
             }  
         %> --%>
 	</table>
-	
 	</center>
+	
 	<%  
         rs.close();  
         statement.close();  
         connection.close();  
     %>
     
-		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
-			type=button value="返回" /></a>
+    <a href="javascript:;" onclick="location='TeacherInfoChange.jsp'"><input
+			type=button value="修 改" /></a>
+	</div>
+	<div>
+		<a href="javascript:;" onclick="location='TeacherIndex.jsp'"><input
+			type=button value="返回主页" /></a>
 	</div>
 </body>
 </html>

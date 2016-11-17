@@ -1,19 +1,9 @@
-<%-- <%@ page language="java" pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>所有老师</title>
-</head>
-<body>
-</body>
-</html><span style="font-size: 12px;"><span style="font-size: 14px;"> --%>
-		<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.T_S_Management.Action.TeachersAction,com.opensymphony.xwork2.ActionContext"%>
+	<%@ page language="java" import="java.sql.*,java.io.*,java.util.*, com.T_S_Management.Action.TeachersAction,com.opensymphony.xwork2.ActionContext"%>
 		<%@ page contentType="text/html;charset=utf-8"%>
 		<%@ taglib prefix="s" uri="/struts-tags"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>所有老师</title>
 <link rel="stylesheet" href="css/main.css">
 <style type="text/css">
 table {
@@ -43,7 +33,6 @@ div{
 
 }
 </style>
-<title>搜索结果</title>
 </head>
 
 <body>
@@ -67,22 +56,13 @@ div{
         String url = "jdbc:mysql://localhost:3306/" + dbName + "?user="  + userName + "&password=" + userPasswd;  
         Class.forName("com.mysql.jdbc.Driver").newInstance();  
         Connection connection = DriverManager.getConnection(url);  
-        Statement statement = connection.createStatement(); 
-        
-        TeachersAction a = new TeachersAction();
-        String temp;
-		temp = ActionContext.getContext().get("searchTeacher").toString();
-		System.out.println(temp);
-		
-		String sql = "SELECT * FROM teachers where name ="+temp;
+        Statement statement = connection.createStatement();  
+		String sql = "SELECT * FROM teachers ";
         ResultSet rs = statement.executeQuery(sql);  
-        
-       
     %> 
-    
-	<div>
-		<h2>搜索结果</h2>
-<center>
+		<h2>所有教师</h2>
+		<div>
+	<center>
 	<table>
 		<tr>
 			<th>
@@ -121,25 +101,28 @@ div{
 			<td>
 				<a
 				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(12)%>">查看详细信息</a>
-				<%-- <a
-				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a> --%>
+				<br>
+				<a
+				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a>
 			</td>
 		</tr>
 		<%  
             }  
         %>
-        
-       
+	</table>
+	</center>
 	
 	<%  
         rs.close();  
         statement.close();  
         connection.close();  
     %>
-    </table>
-</center>
-		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
+    
+    <a href="javascript:;" onclick="location='StudentSearch.jsp'"><input
+			type=button value="教师查询" /></a>
+    
+    <a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
 			type=button value="返回" /></a>
-	</div>
+</div>
 </body>
 </html>
