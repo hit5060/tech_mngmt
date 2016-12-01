@@ -74,11 +74,7 @@ public class TeachersAction {
 
 	/**********************************功能函数*************************************/
 	public String modifyTeacher(){
-		connect();
-		userId = UsersAction.ID;
-		ActionContext.getContext().put("teacherID", userId);
-		System.out.println(userId);
-		int result = 0;
+				int result = 0;
 		try {
 			Statement stmt = conn.createStatement();
 		
@@ -96,71 +92,7 @@ public class TeachersAction {
 		return "SUCCESS";
 	}
 	
-	public int formIds(String rlt){
-		System.out.println("formIds");
-
-		connect();
-		relatedStudent = UsersAction.ID;
-		System.out.println(relatedStudent);
-
-		String sql = "select "+rlt+" from students where userid ="+relatedStudent;
-		System.out.println(sql);
-		String ori = "";
-		try{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//或者while(rs.next()) 
-				   ori = rs.getString(1);
-				   if(ori == null){
-				        ori = "";
-				   }
-			}
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-		disconnect();
-		
-		String regex = "[0-9]+";
-        Pattern pat = Pattern.compile(regex);
-        Matcher mat = pat.matcher(ori);
-        int i = 1;
-        while (mat.find())
-        {
-            System.out.println(mat.group());
-            String val = mat.group();
-            int value = Integer.parseInt(val);
-            ids[i] = value;
-            i ++;
-        }
-		return i;
-	}
-	
-	public void addRelation(String tID, String rlt, String sID){
-		connect();
-		int result = 0;
-		String sql = "select "+rlt+" from teachers where id ="+tID;
-		System.out.println(sql);
-		String relation = "";
-		
-		try{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//或者while(rs.next()) 
-				relation = rs.getString(1);
-				   if(relation == null){
-					   relation = "";
-				   }
-			}
-			
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-		relation = relation + ',' +sID;
-		try {
-			Statement stmt = conn.createStatement();
-			//System.out.println("nuserId="+nuserId+"npassword="+npassword);
+				//System.out.println("nuserId="+nuserId+"npassword="+npassword);
 			sql = "update teachers set "+rlt+"='"+relation+"'"+"where id="+tID;
 			System.out.println(sql);
 			result = stmt.executeUpdate(sql);
