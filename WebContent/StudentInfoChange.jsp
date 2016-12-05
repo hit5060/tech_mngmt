@@ -25,44 +25,53 @@ td{
 }
 
 body {
-	background-image: url(img/3.jpg);
+    background-image: url(img/3.jpg);
 	background-attachment:fixed;
 	font-family: "微软雅黑";
 	font-size: 1.5em;
 }
 
+body {
+	font-family: 微软雅黑;
+	font-size: 1.5em；
+}
 h2{
 	font-size:5em;
 	font-family:"微软雅黑";
 	margin:0;
 }
+div{
+	text-align:center;
+}
+a{
+	display:block;
+	padding:1em;
+	}
+
 </style>
-<title>教师信息修改</title>
+<title>学生信息修改</title>
 </head>
 
 <body>
 	<%-- <s:property value="tips"/> --%>
 	<!-- <div id="formbackground"
 		style="position: absolute; width: 100%; height: 100%; z-index: -1">
-		<img src="img/back.jpg" height="100%" width="100%" />
+		<img src="imge/image2.jpg" height="100%" width="100%" />
 	</div> -->
-	<div style="text-align: center;">
-		<h2>教师信息修改</h2>
+ <div>
+		<h2>学生信息修改</h2>
 	<center>
-	<table>
-		<s:form action="modifyTeacher">
+		<s:form action="modifyStudent">
 			<s:textfield name="name" label="姓名" />
-			<s:textfield name="college" label="学院" />
-			<s:textfield name="title" label="职称" />
-			<s:textfield name="office" label="办公室" />
+			<s:textfield name="number" label="学号" />
+			<s:textfield name="major" label="专业" />
 			<s:textfield name="tel" label="电话" />
 			<s:textfield name="mail" label="邮箱" />
-			<s:textarea  name="introduce" label="简介" />
+			<s:textarea name="introduce" label="简介" />			
 			<s:submit value="修改" />
 		</s:form>
-		</table>
 	</center>
-		<a href="javascript:;" onclick="location='TeacherIndex.jsp'"><input
+		<a href="javascript:;" onclick="location='StudentIndex.jsp'"><input
 			type=button value="返回主页" /></a>
 	</div>
 </body>

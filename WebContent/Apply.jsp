@@ -19,8 +19,10 @@ td{
 }
 
 body {
-	font-family: "微软雅黑";
-	font-size: 1.5em;
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
+	font-family: 微软雅黑;
+	font-size: 1.5em
 }
 
 h2{
@@ -60,20 +62,15 @@ div{
 		String sql = "SELECT * FROM teachers ";
         ResultSet rs = statement.executeQuery(sql);  
     %> 
-		<h2>所有教师</h2>
+		<h2>本周日程安排</h2>
 		<div>
 	<center>
-	<form>
+	<form action="arrangement" >
 	<table>
 		<tr>
 			<th>
 				<%  
                     out.print("");  
-                %>
-			</th>
-			<th>
-				<%  
-                    out.print("周日");  
                 %>
 			</th>
 			<th>
@@ -106,6 +103,11 @@ div{
                     out.print("周六");  
                 %>
 			</th>
+			<th>
+				<%  
+                    out.print("周日");  
+                %>
+			</th>
 			
 		</tr>
 
@@ -118,40 +120,39 @@ div{
 			</th>
 			<td>
 			
-		   	<input type="radio" name="s1" value="1" checked>√
-		   	<br>
-			<input type="radio" name="s1" value="0">×
+		   	<input type="radio" name="s1" value="1">√<br>
+			<input type="radio" name="s1" value="0" checked>×
 		
 			</td>
 			<td>
 		   <!-- 塞东西 表单周一 -->
-			<input type="radio" name="s2" value="1" checked>√	<br>
-			<input type="radio" name="s2" value="0">×
+			<input type="radio" name="s2" value="1">√<br>
+			<input type="radio" name="s2" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周二 -->
-			<input type="radio" name="s3" value="1" checked>√	<br>
-			<input type="radio" name="s3" value="0">×		
+			<input type="radio" name="s3" value="1">√<br>
+			<input type="radio" name="s3" value="0" checked>×		
 			</td>
 			<td>
 		   <!-- 塞东西 表单周三-->
-			<input type="radio" name="s4" value="1" checked>√	<br>
-			<input type="radio" name="s4" value="0">×
+			<input type="radio" name="s4" value="1">√<br>
+			<input type="radio" name="s4" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周四 -->
-			<input type="radio" name="s5" value="1" checked>√	<br>
-			<input type="radio" name="s5" value="0">×
+			<input type="radio" name="s5" value="1">√<br>
+			<input type="radio" name="s5" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周五-->
-			<input type="radio" name="s6" value="1" checked>√	<br>
-			<input type="radio" name="s6" value="0">×
+			<input type="radio" name="s6" value="1">√<br>
+			<input type="radio" name="s6" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周六 -->
-			<input type="radio" name="s7" value="1" checked>√	<br>
-			<input type="radio" name="s7" value="0">×
+			<input type="radio" name="s7" value="1">√<br>
+			<input type="radio" name="s7" value="0" checked>×
 			</td>
 		</tr>
 			
@@ -163,38 +164,38 @@ div{
 			</th>
 			<td>
 		   <!-- 塞东西 表单周日 -->
-			<input type="radio" name="s8" value="1" checked>√	<br>
-			<input type="radio" name="s8" value="0">×
+			<input type="radio" name="s8" value="1">√<br>
+			<input type="radio" name="s8" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周一 -->
-			<input type="radio" name="s9" value="1" checked>√	<br>
-			<input type="radio" name="s9" value="0">×
+			<input type="radio" name="s9" value="1">√<br>
+			<input type="radio" name="s9" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周二 -->
-			<input type="radio" name="s10" value="1" checked>√	<br>
-			<input type="radio" name="s10" value="0">×
+			<input type="radio" name="s10" value="1">√<br>
+			<input type="radio" name="s10" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周三-->
-			<input type="radio" name="s11" value="1" checked>√	<br>
-			<input type="radio" name="s11" value="0">×
+			<input type="radio" name="s11" value="1">√<br>
+			<input type="radio" name="s11" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周四 -->
-			<input type="radio" name="s12" value="1" checked>√	<br>
-			<input type="radio" name="s12" value="0">×
+			<input type="radio" name="s12" value="1">√<br>
+			<input type="radio" name="s12" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周五-->
-			<input type="radio" name="s13" value="1" checked>√	<br>
-			<input type="radio" name="s13" value="0">×
+			<input type="radio" name="s13" value="1">√<br>
+			<input type="radio" name="s13" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周六 -->
-			<input type="radio" name="s14" value="1" checked>√	<br>
-			<input type="radio" name="s14" value="0">×
+			<input type="radio" name="s14" value="1">√<br>
+			<input type="radio" name="s14" value="0" checked>×
 			</td>
 			
 		</tr>
@@ -207,38 +208,38 @@ div{
 			</th>
 			<td>
 		   <!-- 塞东西 表单周日 -->
-			<input type="radio" name="s15" value="1" checked>√	<br>
-			<input type="radio" name="s15" value="0">×
+			<input type="radio" name="s15" value="1">√<br>
+			<input type="radio" name="s15" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周一 -->
-			<input type="radio" name="s16" value="1" checked>√	<br>
-			<input type="radio" name="s16" value="0">×
+			<input type="radio" name="s16" value="1">√<br>
+			<input type="radio" name="s16" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周二 -->
-			<input type="radio" name="s17" value="1" checked>√	<br>
-			<input type="radio" name="s17" value="0">×
+			<input type="radio" name="s17" value="1">√<br>
+			<input type="radio" name="s17" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周三-->
-			<input type="radio" name="s18" value="1" checked>√	<br>
-			<input type="radio" name="s18" value="0">×
+			<input type="radio" name="s18" value="1">√<br>
+			<input type="radio" name="s18" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周四 -->
-			<input type="radio" name="s19" value="1" checked>√	<br>
-			<input type="radio" name="s19" value="0">×
+			<input type="radio" name="s19" value="1">√<br>
+			<input type="radio" name="s19" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周五-->
-			<input type="radio" name="s20" value="1" checked>√	<br>
-			<input type="radio" name="s20" value="0">×
+			<input type="radio" name="s20" value="1">√<br>
+			<input type="radio" name="s20" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周六 -->
-			<input type="radio" name="s21" value="1" checked>√	<br>
-			<input type="radio" name="s21" value="0">×
+			<input type="radio" name="s21" value="1">√<br>
+			<input type="radio" name="s21" value="0" checked>×
 			</td>
 		</tr>
 		
@@ -250,38 +251,38 @@ div{
 			</th>
 			<td>
 		   <!-- 塞东西 表单周日 -->
-			<input type="radio" name="s22" value="1" checked>√	<br>
-			<input type="radio" name="s22" value="0">×
+			<input type="radio" name="s22" value="1">√<br>
+			<input type="radio" name="s22" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周一 -->
-			<input type="radio" name="s23" value="1" checked>√	<br>
-			<input type="radio" name="s23" value="0">×
+			<input type="radio" name="s23" value="1">√<br>
+			<input type="radio" name="s23" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周二 -->
-			<input type="radio" name="s24" value="1" checked>√	<br>
-			<input type="radio" name="s24" value="0">×
+			<input type="radio" name="s24" value="1">√<br>
+			<input type="radio" name="s24" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周三-->
-			<input type="radio" name="s25" value="1" checked>√	<br>
-			<input type="radio" name="s25" value="0">×
+			<input type="radio" name="s25" value="1">√<br>
+			<input type="radio" name="s25" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周四 -->
-			<input type="radio" name="s26" value="1" checked>√	<br>
-			<input type="radio" name="s26" value="0">×
+			<input type="radio" name="s26" value="1">√<br>
+			<input type="radio" name="s26" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周五-->
-			<input type="radio" name="s27" value="1" checked>√	<br>
-			<input type="radio" name="s27" value="0">×
+			<input type="radio" name="s27" value="1">√<br>
+			<input type="radio" name="s27" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周六 -->
-			<input type="radio" name="s28" value="1" checked>√	<br>
-			<input type="radio" name="s28" value="0">×
+			<input type="radio" name="s28" value="1">√<br>
+			<input type="radio" name="s28" value="0" checked>×
 			</td>
 		</tr>
 		
@@ -293,38 +294,38 @@ div{
 			</th>
 			<td>
 		   <!-- 塞东西 表单周日 -->
-			<input type="radio" name="s29" value="1" checked>√	<br>
-			<input type="radio" name="s29" value="0">×
+			<input type="radio" name="s29" value="1">√<br>
+			<input type="radio" name="s29" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周一 -->
-			<input type="radio" name="s30" value="1" checked>√	<br>
-			<input type="radio" name="s30" value="0">×
+			<input type="radio" name="s30" value="1">√<br>
+			<input type="radio" name="s30" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周二 -->
-			<input type="radio" name="s31" value="1" checked>√	<br>
-			<input type="radio" name="s31" value="0">×
+			<input type="radio" name="s31" value="1">√<br>
+			<input type="radio" name="s31" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周三-->
-			<input type="radio" name="s32" value="1" checked>√	<br>
-			<input type="radio" name="s32" value="0">×
+			<input type="radio" name="s32" value="1">√<br>
+			<input type="radio" name="s32" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周四 -->
-			<input type="radio" name="s33" value="1" checked>√	<br>
-			<input type="radio" name="s33 value="0">×
+			<input type="radio" name="s33" value="1">√<br>
+			<input type="radio" name="s33" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周五-->
-			<input type="radio" name="s34" value="1" checked>√	<br>
-			<input type="radio" name="s34" value="0">×
+			<input type="radio" name="s34" value="1">√<br>
+			<input type="radio" name="s34" value="0" checked>×
 			</td>
 			<td>
 		   <!-- 塞东西 表单周六 -->
-			<input type="radio" name="s35" value="1" checked>√	<br>
-			<input type="radio" name="s35" value="0">×
+			<input type="radio" name="s35" value="1">√<br>
+			<input type="radio" name="s35" value="0" checked>×
 			</td>
 		</tr>	
 	</table>
@@ -339,8 +340,6 @@ div{
     %>
     
     
-    <a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
-			type=button value="返回" /></a>
 </div>
 </body>
 </html>
