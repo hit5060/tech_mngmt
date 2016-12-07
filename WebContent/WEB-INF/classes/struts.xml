@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">  
+  
+<struts>  
+    <package name="T_S_Management" extends="struts-default">  
+    
+       <action name="login" class="com.T_S_Management.Action.UsersAction" method="login">  
+            <result name="student">/StudentIndex.jsp</result>  
+            <result name="teacher">/TeacherIndex.jsp</result>
+            <result name="fail">/Fail.jsp</result>
+        </action>   
+          
+         <action name="TeacherRegist" class="com.T_S_Management.Action.UsersAction" method="createTeacher">  
+            <result name="SUCCESS">/Login.jsp</result>  
+            <result name="ERROR">/TeacherRegist.jsp</result>
+        </action>
+        
+        <action name="StudentRegist" class="com.T_S_Management.Action.UsersAction" method="createStudent">  
+            <result name="SUCCESS">/Login.jsp</result>  
+            <result name="ERROR">/TeacherRegist.jsp</result>
+        </action>
+        
+        <action name="TeacherInfo" class="com.T_S_Management.Action.TeachersAction" method="nullTeacher">  
+            <result name="SUCCESS">/TeacherInfo.jsp</result>  
+            
+        </action>
+        
+        <action name="StudentInfo" class="com.T_S_Management.Action.StudentsAction" method="nullStudent">  
+            <result name="SUCCESS">/StudentInfo.jsp</result>  
+            
+        </action>
+        
+        <action name="modifyTeacher" class="com.T_S_Management.Action.TeachersAction" method="modifyTeacher">  
+            <result name="SUCCESS">/TeacherInfo.jsp</result>  
+            
+        </action>
+        
+        <action name="modifyStudent" class="com.T_S_Management.Action.StudentsAction" method="modifyStudent">  
+            <result name="SUCCESS">/StudentInfo.jsp</result>  
+            
+        </action>
+        
+        <action name="DetailTeacherInfo" class="com.T_S_Management.Action.TeachersAction" method="null2Teacher" >  
+            <result name="SUCCESS">/DetailTeacherInfo.jsp</result>  
+            
+        </action>
+        
+        <action name="Search" class="com.T_S_Management.Action.TeachersAction" method="searchTeacher" >  
+            <result name="SUCCESS">/SearchResult.jsp</result>  
+            
+        </action>
+        
+        <action name="queryAll" class="com.T_S_Management.Action.TeachersAction" method="queryAll" >  
+            <result name="SUCCESS">/AllTeacher2.jsp</result>  
+            
+        </action>
+        
+        <action name="StudentApplication" class="com.T_S_Management.Action.TeachersAction" method="StudentApplication" >  
+            <result name="SUCCESS">/TeacherApplication2.jsp</result>  
+            
+        </action>
+        
+        <action name="TeacherApplication" class="com.T_S_Management.Action.StudentsAction" method="TeacherApplication" >  
+            <result name="SUCCESS">/StudentApplication2.jsp</result>  
+            
+        </action>
+        
+        <action name="teacherAccept" class="com.T_S_Management.Action.TeachersAction" method="addAccept" >  
+            <result name="SUCCESS">/StudentApplication2.jsp</result>  
+            
+        </action>
+        
+         <action name="studentAccept" class="com.T_S_Management.Action.StudentsAction" method="addAccept" >  
+            <result name="SUCCESS">/TeacherApplication.action</result>  
+            
+        </action>
+       
+        
+    </package>  
+</struts>
