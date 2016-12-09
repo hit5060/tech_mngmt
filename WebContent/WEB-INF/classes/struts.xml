@@ -4,6 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">  
   
 <struts>  
+	<constant name="struts.configuration.xml.reload" value="true"/>   
     <package name="T_S_Management" extends="struts-default">  
     
        <action name="login" class="com.T_S_Management.Action.UsersAction" method="login">  
@@ -77,6 +78,11 @@
             
         </action>
        
+       <action name="uploadfile" class="com.T_S_Management.Action.UploadFileAction" method="upload">
+
+              <result name="success">/uploadOK.jsp</result>
+
+       </action>        
         
     </package>  
 </struts>
