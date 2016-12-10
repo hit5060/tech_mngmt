@@ -12,18 +12,20 @@
 <style type="text/css">
 table {
 	border: 0px #CCCCCC solid;
+	font-size:1.5em;
 	width: 50%;
 }
 
 td, th {
 	height: 30px;
-	border: #CCCCCC 0px solid;
 	text-align: center;
 }
 
 body {
+	background-image: url(img/3.jpg);
+    background-attachment:fixed;
 	font-family: 微软雅黑;
-	font-size: 1.5em；
+	font-size: 1.5em
 }
 h2{
 	font-size:5em;
@@ -33,14 +35,15 @@ h2{
 </style>
 </head>
 <body>
+
    <div style="text-align: center">
-   <h2>登陆</h2>
+   <h2>登录</h2>
    <center>
    <table>
      <s:form action="login" >
            <s:textfield name="nuserId" label="用户名"/>
            <s:textfield name="npassword" label="密   码" />
-           <s:submit value="登 陆"/>     
+           <s:submit value="登录"/>     
      </s:form>
      </table>
   </center>

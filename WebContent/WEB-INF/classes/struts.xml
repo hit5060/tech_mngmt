@@ -58,15 +58,17 @@
             
         </action>
         
-        <action name="StudentApplication" class="com.T_S_Management.Action.TeachersAction" method="StudentApplication" >  
-            <result name="SUCCESS">/TeacherApplication2.jsp</result>  
+        
+        <action name="viewStudents" class="com.T_S_Management.Action.TeachersAction" method="viewStudents" >  
+            <result name="SUCCESS">/viewStudents.jsp</result>  
             
         </action>
         
-        <action name="TeacherApplication" class="com.T_S_Management.Action.StudentsAction" method="TeacherApplication" >  
-            <result name="SUCCESS">/StudentApplication2.jsp</result>  
+        <action name="viewTeachers" class="com.T_S_Management.Action.StudentsAction" method="viewTeachers" >  
+            <result name="SUCCESS">/viewTeachers.jsp</result>  
             
         </action>
+
         
         <action name="teacherAccept" class="com.T_S_Management.Action.TeachersAction" method="addAccept" >  
             <result name="SUCCESS">/StudentApplication2.jsp</result>  
@@ -82,7 +84,50 @@
 
               <result name="success">/uploadOK.jsp</result>
 
-       </action>        
+       </action>   
+       
+       <action name="arrangement" class="com.T_S_Management.Action.TeachersAction" method="arrangement">
+
+              <result name="SUCCESS">/ArrangementDisplay.jsp</result>
+
+       </action> 
+       
+       
+            
+            
+            
+            
+       <!-- 学生申请后台链接 -->
+       <action name="StudentApply" class="com.T_S_Management.Action.StudentsAction" method="addAccept" >  
+            <result name="SUCCESS">/TeacherApplication.action</result>  
+            
+        </action>
+        
+        
+               <action name="apply" class="com.T_S_Management.Action.StudentsAction" method="apply">
+
+              <result name="SUCCESS">/AllTeacher.jsp</result>
+       </action>
+       
+       <action name="accept" class="com.T_S_Management.Action.TeachersAction" method="accept">
+
+              <result name="SUCCESS">/viewStudents.jsp</result>
+       </action>
+       
+       <action name="reject" class="com.T_S_Management.Action.TeachersAction" method="reject">
+
+              <result name="SUCCESS">/viewStudents.jsp</result>
+       </action>
+        
+        <action name="studentViewArrangement" class="com.T_S_Management.Action.TeachersAction" method="studentViewArrangement">
+
+              <result name="SUCCESS">/DetailArrangement_S.jsp</result>
+       </action>
+       
+       <action name="teacherViewArrangement" class="com.T_S_Management.Action.TeachersAction" method="teacherViewArrangement">
+
+              <result name="SUCCESS">/ArrangementDisplay.jsp</result>
+       </action>
         
     </package>  
 </struts>

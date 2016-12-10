@@ -6,26 +6,26 @@ public class Students {
 	private String major;
 	private String number;
 	private String tel;
+	private String photo;
 	private String introduce;
 	private String mail;
-	private String apllied;
-	private String accepted;
-	private String rejected;
 	private String userId;
+	private String application;
+	private String time;
 
 	Students(){}
-	Students(String id, String name, String major, String number, String tel, String introduce, String mail, String applied, String accepted, String rejected, String userId){
+	Students(String id, String name, String major, String number, String tel, String photo, String introduce, String mail,String userId, String application,String time){
 		this.id = id;
 		this.name = name;
 		this.number = number;
 		this.major = major;
 		this.tel = tel;
+		this.photo = photo;
 		this.mail = mail;
 		this.introduce = introduce;
-		this.apllied = applied;
-		this.accepted = accepted;
-		this.rejected = rejected;
 		this.userId = userId;
+		this.application = application;
+		this.time = time;
 	}
 	public String getId() {
 		return id;
@@ -69,28 +69,29 @@ public class Students {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getApllied() {
-		return apllied;
-	}
-	public void setApllied(String apllied) {
-		this.apllied = apllied;
-	}
-	public String getAccepted() {
-		return accepted;
-	}
-	public void setAccepted(String accepted) {
-		this.accepted = accepted;
-	}
-	public String getRejected() {
-		return rejected;
-	}
-	public void setRejected(String rejected) {
-		this.rejected = rejected;
-	}
+	
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getApplication() {
+		return application;
+	}
+	public void setApplication(String application) {
+		this.application = application;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 }

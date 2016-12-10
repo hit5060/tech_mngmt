@@ -7,27 +7,25 @@ public class Teachers {
 	private String title;
 	private String office;
 	private String tel;
+	private String photo;
 	private String introduce;
 	private String mail;
-	private String apllied;
-	private String accepted;
-	private String rejected;
 	private String userId;
 	private String college;
+	private String arrangement;
 	Teachers(){}
-	Teachers(String id, String name, String title, String office, String tel, String introduce, String mail, String applied, String accepted, String rejected, String userId, String college){
+	Teachers(String id, String name, String title, String office, String tel, String photo, String introduce, String mail, String userId, String college, String arrangement){
 		this.setId(id);
 		this.setName(name);
 		this.setTitle(title);
 		this.setOffice(office);
 		this.setTel(tel);
+		this.setPhoto(photo);
 		this.setMail(mail);
 		this.setIntroduce(introduce);
-		this.setApllied(applied);
-		this.setAccepted(accepted);
-		this.setRejected(rejected);
 		this.setUserId(userId);
 		this.setCollege(college);
+		this.setArrangement(arrangement);
 	}
 	public String getId() {
 		return id;
@@ -71,24 +69,7 @@ public class Teachers {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getApllied() {
-		return apllied;
-	}
-	public void setApllied(String apllied) {
-		this.apllied = apllied;
-	}
-	public String getAccepted() {
-		return accepted;
-	}
-	public void setAccepted(String accepted) {
-		this.accepted = accepted;
-	}
-	public String getRejected() {
-		return rejected;
-	}
-	public void setRejected(String rejected) {
-		this.rejected = rejected;
-	}
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -101,6 +82,18 @@ public class Teachers {
 	}
 	public void setCollege(String college) {
 		this.college = college;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getArrangement() {
+		return arrangement;
+	}
+	public void setArrangement(String arrangement) {
+		this.arrangement = arrangement;
 	}
 
 }

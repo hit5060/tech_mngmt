@@ -4,9 +4,12 @@
 		<%@ taglib prefix="s" uri="/struts-tags"%> <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 		<html>
 
+
+<head>
+<link rel="stylesheet" href="css/main.css">
+<title>申请管理</title>
 <style type="text/css">
 table {
-	border: 0px #CCCCCC solid;
 	width: 80%;
 }
 
@@ -17,13 +20,12 @@ td, th {
 }
 
 body {
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	font-family: 微软雅黑, 宋体;
 	font-size: 1em;
-	color: black;
 }
 </style>
-<head>
-<title>申请管理</title>
 </head>
 
 <body>

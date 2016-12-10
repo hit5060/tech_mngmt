@@ -17,7 +17,6 @@ table {
 	
 }
 th{
-	border-right:1px solid #ccc;
 	width:6em;
 	}
 
@@ -28,13 +27,15 @@ td{
 }
 
 body {
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	font-family: "微软雅黑";
 	font-size: 1.5em;
 }
 h2{
 	text-align:center;
 	font-size:5em;
-	margin:0;
+	margin-bottom:1em;
 }
 div{
 	text-align:center;
@@ -44,6 +45,11 @@ div{
 </head>
 
 <body>
+<!-- <header id="header">
+	<nav class="right">
+		<a href="TeacherIndex.jsp">首页</a>
+	</nav>
+</header> -->
 	<!-- <div id="formbackground"
 		style="position: absolute; width: 100%; height: 100%; z-index: -1">
 		<img src="imge/image4.jpg" height="100%" width="100%" />
@@ -69,7 +75,7 @@ div{
         String temp;
 		temp = ActionContext.getContext().get("teacherID").toString();
 		System.out.println(temp);
-		String sql = "SELECT * FROM teachers where userid="+ temp;
+		String sql = "SELECT * FROM teachers where userid= '"+ temp +"'";
         ResultSet rs = statement.executeQuery(sql);  
     %> 
     
@@ -101,7 +107,7 @@ div{
 			</th>
 			<td>
 				<%  
-					out.print(rs.getString(13));
+					out.print(rs.getString(10));
                 %>
 			</td>
 		</tr>

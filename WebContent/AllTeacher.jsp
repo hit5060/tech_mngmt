@@ -19,6 +19,8 @@ td{
 }
 
 body {
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	font-family: "微软雅黑";
 	font-size: 1.5em;
 }
@@ -94,16 +96,18 @@ div{
 			</td>
 			<td>
 				<%  
-                    out.print(rs.getString(13));  
+                    out.print(rs.getString(10));  
                 %>
 			</td>
 			
 			<td>
 				<a
-				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(12)%>">查看详细信息</a>
+				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(9)%>">查看详细信息</a>
 				<br>
+				
+				<!-- 发出申请需要加传参  -->
 				<a
-				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a>
+				href="<%=request.getContextPath()%>/studentViewArrangement.action?viewTeacher=<%=rs.getString(9)%>">发出申请</a>
 			</td>
 		</tr>
 		<%  
@@ -121,8 +125,8 @@ div{
     <a href="javascript:;" onclick="location='StudentSearch.jsp'"><input
 			type=button value="教师查询" /></a>
     
-    <a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
-			type=button value="返回" /></a>
+    <a href="StudentIndex.jsp"><input
+			type=button value="返回主页" /></a>
 </div>
 </body>
 </html>
