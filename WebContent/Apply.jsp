@@ -41,29 +41,10 @@ div{
 		<img src="imge/image4.jpg" height="100%" width="100%" />
 	</div> -->
 	
-	 <%  
-        //驱动程序名   
-        String driverName = "com.mysql.jdbc.Driver";  
-        //数据库用户名   
-        String userName = "root";  
-        //密码   
-        String userPasswd = "960927";  
-        //数据库名   
-        String dbName = "TSM";  
-        //表名   
-        String tableName = "teachers";  
-        //联结字符串   
-        String url = "jdbc:mysql://localhost:3306/" + dbName + "?user="  + userName + "&password=" + userPasswd;  
-        Class.forName("com.mysql.jdbc.Driver").newInstance();  
-        Connection connection = DriverManager.getConnection(url);  
-        Statement statement = connection.createStatement();  
-		String sql = "SELECT * FROM teachers ";
-        ResultSet rs = statement.executeQuery(sql);  
-    %> 
 		<h2>所有教师</h2>
 		<div>
 	<center>
-	<form>
+	<form action="arrangement">
 	<table>
 		<tr>
 			<th>
@@ -332,11 +313,6 @@ div{
 	</form>
 	</center>
 	
-	<%  
-        rs.close();  
-        statement.close();  
-        connection.close();  
-    %>
     
     
     <a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input

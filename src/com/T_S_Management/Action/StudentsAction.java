@@ -32,9 +32,9 @@ public class StudentsAction {
 	private String rejectedTeacher;
 	private String appliedTeacher;
 	
-	static String URL = "jdbc:mysql://localhost:3306/TSM";
+	static String URL = "jdbc:mysql://localhost:3306/tch_mngmt";
 	static String username = "root";
-	static String password = "960927";
+	static String password = "7892341911";
 	
 	public int[] ids = new int[10];
 	private String relatedTeacher;

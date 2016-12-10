@@ -82,7 +82,15 @@
 
               <result name="success">/uploadOK.jsp</result>
 
-       </action>        
+       </action> 
+       
+       <action name="arrangement" class="com.T_S_Management.Action.TeachersAction" method="arrangement">
+
+              <result name="SUCCESS">/Apply.jsp</result>
+
+       </action>             
         
+        
+       
     </package>  
 </struts>

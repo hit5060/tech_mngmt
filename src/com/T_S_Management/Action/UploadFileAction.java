@@ -104,15 +104,15 @@ public class UploadFileAction extends ActionSupport {
                      uploadFileContentType=".jpg";                 
 
               }else if(  uploadFileContentType.equals("image/png")){
-
+            	  System.out.println("here!");
                      uploadFileContentType=".png";                
 
               } else if(uploadFileContentType.equals("image/gif")){
-
+            	  System.out.println("here!");
                      uploadFileContentType=".gif";                  
 
               }            
-
+              System.out.println("here!");
               uploadFileName="image"+new Timestamp().getDateTime()+uploadFileContentType;           
               FileUtils.copyFile(uploadFile, new File(dir, uploadFileName));
 

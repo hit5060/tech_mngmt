@@ -14,9 +14,9 @@ public class UsersAction {
 	private String nproperty;
 	 static String ID; 
 	/****************************************************/
-	static String URL = "jdbc:mysql://localhost:3306/TSM";
+	static String URL = "jdbc:mysql://localhost:3306/tch_mngmt";
 	static String username = "root";
-	static String password = "960927";
+	static String password = "7892341911";
 	//System.getenv("MYSQL_HOST_S"); Îª´Ó¿â£¬Ö»¶Á
 	//static String dbUrl = String.format("jdbc:mysql://%s:%s/%s", System.getenv("MYSQL_HOST"), System.getenv("MYSQL_PORT"), System.getenv("MYSQL_DB"));
 	/***************************************************/
