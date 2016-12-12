@@ -14,32 +14,36 @@ import com.opensymphony.xwork2.ActionContext;
 
 public class TeachersAction {
 	private Connection conn = null;
+	//教师的集合们
 	private ArrayList<Teachers> appliedTeachers = new ArrayList<Teachers>();
 	private ArrayList<Teachers> acceptedTeachers = new ArrayList<Teachers>();
 	private ArrayList<Teachers> rejectedTeachers = new ArrayList<Teachers>();
 	
 	private ArrayList<Teachers> allTeachers = new ArrayList<Teachers>();
 	private Teachers myself = new Teachers();
+	//学生的集合们
+	private ArrayList<Students> appliedStudents = new ArrayList<Students>(); //向该老师申请的学生集合
+	private ArrayList<Students> acceptedStudents = new ArrayList<Students>(); //该老师已接受的学生集合
+	private ArrayList<Students> rejectedStudents = new ArrayList<Students>(); //该老师已拒绝的学生集合
+	
 	//注：查看详情还未实现，Findid和addRelation未实现
 	private String id;
-	
 	private String name;
 	private String title;
 	private String office;
 	private String tel;
+	private String photo;
 	private String introduce;
 	private String mail;
 	private String college;
+	private String arrangement;
 	
-	private String apllied;
-	private String accepted;
-	private String rejected;
 	private static String userId;
 	
+	private String viewTeacher; //学生要查看的教师Id
 	
-	
-	private String acceptedStudent;
-	private String rejectedStudent;
+	private String acceptedStudent; //接受的学生（教师功能页面传递过来的学生userID）
+	private String rejectedStudent; //拒绝的学生（教师功能页面传递过来的学生userID）
 	private String appliedStudent;
 	
 	static String URL = "jdbc:mysql://localhost:3306/TSM";
@@ -112,7 +116,7 @@ public class TeachersAction {
 	}
 
 	/**********************************功能函数*************************************/
-	public String modifyTeacher(){
+	public String modifyTeacher(){ //修改教师个人信息。
 		connect();
 		userId = UsersAction.ID;
 		ActionContext.getContext().put("teacherID", userId);
@@ -175,64 +179,60 @@ public class TeachersAction {
 		return i;
 	}
 	
-	public void addRelation(String tID, String rlt, String sID){
-		connect();
-		int result = 0;
-		String sql = "select "+rlt+" from teachers where id ="+tID;
-		System.out.println(sql);
-		String relation = "";
+	public String viewStudents(){ //查看申请、接受、拒绝的学生的个人信息，修改三个学生的集合
 		
+		userId = UsersAction.ID;
+		ActionContext.getContext().put("teacherID", userId);
+		System.out.println("教师功能-查询学生，教师ID："+userId);
+		
+		connect(); //连接数据库
+		
+		String sql1 = "select * from students where application like'" + userId + "':A"; //查询申请学生
+		String sql2 = "select * from students where application like'" + userId + "':B"; //查询接受学生
+		String sql3 = "select * from students where application like'" + userId + "':C"; //查询拒绝学生
 		try{
-			PreparedStatement ps = conn.prepareStatement(sql);
+			System.out.println("查询申请学生的语句"+sql1);
+			PreparedStatement ps = conn.prepareStatement(sql1);
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//或者while(rs.next()) 
-				relation = rs.getString(1);
-				   if(relation == null){
-					   relation = "";
-				   }
+			while(rs.next())
+			{
+				appliedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
 			}
-			
 		}catch(Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
-		relation = relation + ',' +sID;
-		try {
-			Statement stmt = conn.createStatement();
-			//System.out.println("nuserId="+nuserId+"npassword="+npassword);
-			sql = "update teachers set "+rlt+"='"+relation+"'"+"where id="+tID;
-			System.out.println(sql);
-			result = stmt.executeUpdate(sql);
-			System.out.println("result="+result);
-		} catch (Exception e) {
+		
+		try{
+			System.out.println("查询接受学生的语句"+sql2);
+			PreparedStatement ps = conn.prepareStatement(sql2);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				acceptedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
+			}
+		}catch(Exception e)
+		{
 			System.out.println(e.getMessage());
 		}
+		
+		try{
+			System.out.println("查询拒绝学生的语句"+sql3);
+			PreparedStatement ps = conn.prepareStatement(sql3);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				rejectedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
+			}
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
 		disconnect();
+		return "SUCCESS";
 	}
 	
-	public ArrayList<Teachers> queryInfo(String teacherId, int i){	
-		
-		connect();
-		ArrayList<Teachers> teachers = new ArrayList<Teachers>();
-		System.out.println("queryInfo");
-		
-		for(int j = 1; j <= i; j++){
-			String sql = "select * from teachers where id ="+ids[j];//warning type error
-			System.out.println(sql);
-			try{
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery();
-				while(rs.next())
-				{
-					teachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12)));
-				}
-			}catch(Exception e)
-			{
-				System.out.println(e.getMessage());
-			}
-		}
-		return teachers;
-	}
 	
 	public void search(String sql){
 		connect();
@@ -241,81 +241,102 @@ public class TeachersAction {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				allTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12)));
-			}
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	
-   
-	public void queryApply(){
-		System.out.println("queryApply");
-		//Arrays.fill(ids,0);
-		int i = formIds("applied");
-		appliedTeachers = queryInfo("applied",i);
-		//return "SUCCESS";
-	}
-	public void queryAccept(){
-		//Arrays.fill(ids,0);
-		int i = formIds("accepted");
-		acceptedTeachers = queryInfo("accepted",i);
-		//return "SUCCESS";
-	}
-	public void queryReject(){
-		//Arrays.fill(ids,0);
-		int i = formIds("rejected");
-		rejectedTeachers = queryInfo("rejected",i);
-		//return "SUCCESS";
-	}
-	
-	 /************************************************************************************/
-	public String addApply(){
-		String rlt = "applied";
-		//addRelation(rlt, appliedStudent);
-		return "SUCCESS";
-	}
-	
-	public String addAccept(){
-		String rlt = "accepted";
-		connect();
-		relatedTeacher = UsersAction.ID;
-		System.out.println(relatedTeacher);
-		
-		String sql = "select id from teachers where userid ="+relatedTeacher;
-		System.out.println(sql);
-
-		String a = "";
-		try{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()){//或者while(rs.next()) 
-				   a = rs.getString(1);
-				   if(a == null){
-				        a = "";
-				   }
+				allTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
 			}
 		}catch(Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
 		disconnect();
-		
-		System.out.println("sId = "+relatedStudent+"tId = "+a);
-		passID = relatedStudent;
-		StudentsAction SA = new StudentsAction(); 
-		SA.addAccept();
-		addRelation(a,rlt,relatedStudent);
-		return "SUCCESS";
 	}
 	
-	public String addReject(){
-		String rlt = "rejected";
-		//addRelation(rlt, rejectedStudent);
+	public String accept(){ //教师接受学生申请
+		
+		userId = UsersAction.ID;
+		ActionContext.getContext().put("teacherID", userId);
+		System.out.println("教师功能-接受学生申请，教师ID："+userId);
+		
+		connect(); //连接数据库
+		int result = 0;
+		String application = new String(); //将数据库中的关系语句复制到该String
+		String sql1 = "select application from students where userId = '" +acceptedStudent; //查询申请学生
+		//首先将关系语句在要接受的学生的数据库中提取出来
+		try{
+			System.out.println("选取接受学生的申请关系的语句"+sql1);
+			PreparedStatement ps = conn.prepareStatement(sql1);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				application =  rs.getString(1);
+			}
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		//生成新的关系语句，将其更新到接受的学生的数据库关系字段中
+		String sub = userId + ":A;";
+		System.out.println("接受学生申请的老师的关系表达式:"+sub);
+		String[] subs = application.split(sub);
+		application = subs[0] + userId + ":B;" + subs[1];
+		String sql2 = "update students set application = '"+application+"' where userid = "+acceptedStudent;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			System.out.println("接受学生申请的数据库更新语句："+sql2);
+			result = stmt.executeUpdate(sql2);
+			System.out.println("result="+result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		disconnect();
 		return "SUCCESS";
 	}
+   
+	public String reject(){ //教师拒绝学生申请
+		
+		userId = UsersAction.ID;
+		ActionContext.getContext().put("teacherID", userId);
+		System.out.println("教师功能-拒绝学生申请，教师ID："+userId);
+		
+		connect(); //连接数据库
+		int result = 0;
+		String application = new String(); //将数据库中的关系语句复制到该String
+		String sql1 = "select application from students where userId = '" +rejectedStudent; //查询拒绝学生
+		//首先将关系语句在要拒绝的学生的数据库中提取出来
+		try{
+			System.out.println("选取拒绝学生的申请关系的语句"+sql1);
+			PreparedStatement ps = conn.prepareStatement(sql1);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				application =  rs.getString(1);
+			}
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		//生成新的关系语句，将其更新到拒绝的学生的数据库关系字段中
+		String sub = userId + ":A;";
+		System.out.println("拒绝学生申请的老师的关系表达式:"+sub);
+		String[] subs = application.split(sub);
+		application = subs[0] + userId + ":C;" + subs[1];
+		String sql2 = "update students set application = '"+application+"' where userid = "+rejectedStudent;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			System.out.println("拒绝学生申请的数据库更新语句："+sql2);
+			result = stmt.executeUpdate(sql2);
+			System.out.println("result="+result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		disconnect();
+		return "SUCCESS";
+	}
+		
+		
+	 /************************************************************************************/
+	
 	
 	
 	
@@ -327,7 +348,7 @@ public class TeachersAction {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				allTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12)));
+				allTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
 			}
 		}catch(Exception e)
 		{
@@ -343,14 +364,6 @@ public class TeachersAction {
 		search(sql2);
 		return "SUCCESS";
 		
-	}
-	
-	public String StudentApplication(){
-		System.out.println("StudentApplication");
-		queryApply();
-		queryAccept();
-		queryReject();
-		return "SUCCESS";
 	}
 	
 	public String arrangement(){
@@ -375,6 +388,66 @@ public class TeachersAction {
 		return "SUCCESS";
 	}
 	
+	public String viewArrangement(){
+		System.out.println("学生功能-查看教师日程，教师ID："+viewTeacher);
+		
+		connect(); //连接数据库
+		String sql = "select arrangement from teachers where userId = '" + viewTeacher +"'"; 
+		
+		int result = 0;
+		String arrgmt = "";
+		try{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				arrgmt = rs.getString(1);
+				System.out.println("教师"+viewTeacher+"的日程安排"+arrgmt);
+			}
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		s1 = arrgmt.substring(0, 0);
+		s2 = arrgmt.substring(1, 1);
+		s3 = arrgmt.substring(2, 2);
+		s4 = arrgmt.substring(3, 3);
+		s5 = arrgmt.substring(4, 4);
+		s6 = arrgmt.substring(5, 5);
+		s7 = arrgmt.substring(6, 6);
+		s8 = arrgmt.substring(7, 7);
+		s9 = arrgmt.substring(8, 8);
+		s10 = arrgmt.substring(9, 9);
+		s11 = arrgmt.substring(10, 10);
+		s12 = arrgmt.substring(11, 11);
+		s13 = arrgmt.substring(12, 12);
+		s14 = arrgmt.substring(13, 13);
+		s15 = arrgmt.substring(14, 14);
+		s16 = arrgmt.substring(15, 15);
+		s17 = arrgmt.substring(16, 16);
+		s18 = arrgmt.substring(17, 17);
+		s19 = arrgmt.substring(18, 18);
+		s20 = arrgmt.substring(19, 19);
+		s21 = arrgmt.substring(20, 20);
+		s22 = arrgmt.substring(21, 21);
+		s23 = arrgmt.substring(22, 22);
+		s24 = arrgmt.substring(23, 23);
+		s25 = arrgmt.substring(24, 24);
+		s26 = arrgmt.substring(25, 25);
+		s27 = arrgmt.substring(26, 26);
+		s28 = arrgmt.substring(27, 27);
+		s29 = arrgmt.substring(28, 28);
+		s30 = arrgmt.substring(29, 29);
+		s31 = arrgmt.substring(30, 30);
+		s32 = arrgmt.substring(31, 31);
+		s33 = arrgmt.substring(32, 32);
+		s34 = arrgmt.substring(33, 33);
+		s35 = arrgmt.substring(34, 34);
+		
+		disconnect();
+		return "SUCCESS";
+	}
 	/*******************************************************************************/
 	public String searchMyself(){
 		userId = UsersAction.ID;
@@ -385,7 +458,7 @@ public class TeachersAction {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				myself = new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+				myself = new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11));
 			}
 		}catch(Exception e)
 		{
@@ -448,35 +521,19 @@ public class TeachersAction {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	public String getApllied() {
-		return apllied;
-	}
-	public void setApllied(String apllied) {
-		this.apllied = apllied;
-	}
+	
 	public String getMail() {
 		return mail;
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getAccepted() {
-		return accepted;
-	}
-	public void setAccepted(String accepted) {
-		this.accepted = accepted;
-	}
-	public String getRejected() {
-		return rejected;
-	}
-	public void setRejected(String rejected) {
-		this.rejected = rejected;
-	}
+	
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
-		this.userId = userId;
+		TeachersAction.userId = userId;
 	}
 	
 	public String getCollege() {
@@ -490,7 +547,7 @@ public class TeachersAction {
 		return relatedStudent;
 	}
 	public void setRelatedStudent(String relatedStudent) {
-		this.relatedStudent = relatedStudent;
+		TeachersAction.relatedStudent = relatedStudent;
 	}
 
 	public ArrayList<Teachers> getAppliedTeachers() {
@@ -562,7 +619,7 @@ public class TeachersAction {
 	}
 
 	public void setRelatedTeacher(String relatedTeacher) {
-		this.relatedTeacher = relatedTeacher;
+		TeachersAction.relatedTeacher = relatedTeacher;
 	}
 
 	public String getS1() {
@@ -851,6 +908,54 @@ public class TeachersAction {
 
 	public void setS36(String s36) {
 		this.s36 = s36;
+	}
+
+	public ArrayList<Students> getAppliedStudents() {
+		return appliedStudents;
+	}
+
+	public void setAppliedStudents(ArrayList<Students> appliedStudents) {
+		this.appliedStudents = appliedStudents;
+	}
+
+	public ArrayList<Students> getAcceptedStudents() {
+		return acceptedStudents;
+	}
+
+	public void setAcceptedStudents(ArrayList<Students> acceptedStudents) {
+		this.acceptedStudents = acceptedStudents;
+	}
+
+	public ArrayList<Students> getRejectedStudents() {
+		return rejectedStudents;
+	}
+
+	public void setRejectedStudents(ArrayList<Students> rejectedStudents) {
+		this.rejectedStudents = rejectedStudents;
+	}
+
+	public String getArrangement() {
+		return arrangement;
+	}
+
+	public void setArrangement(String arrangement) {
+		this.arrangement = arrangement;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public String getViewTeacher() {
+		return viewTeacher;
+	}
+
+	public void setViewTeacher(String viewTeacher) {
+		this.viewTeacher = viewTeacher;
 	}
 
 }

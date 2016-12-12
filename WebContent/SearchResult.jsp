@@ -116,13 +116,13 @@ div{
 			</td>
 			<td>
 				<%  
-                    out.print(rs.getString(13));  
+                    out.print(rs.getString(10));  
                 %>
 			</td>
 			
 			<td>
 				<a
-				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(12)%>">查看详细信息</a>
+				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(9)%>">查看详细信息</a>
 				<%-- <a
 				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a> --%>
 			</td>

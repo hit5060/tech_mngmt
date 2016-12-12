@@ -28,13 +28,13 @@ a{
   	<img src="imge/image1.jpg" height="100%" width="100%"/>  
   </div>  -->
 
-  	<div style="height: 33%;text-align:center">
+  	<div style="text-align:center;height: 33%;">
   	  <a href="TeacherInfo.action" >个人信息</a>
     </div>
-    <div style="height: 33%;text-align:center">
+    <div style="text-align:center;height: 33%;">
   	  <a href="TeacherApplication.action" >申请管理</a>
     </div>
-	<div style="height: 33%;text-align:center">
+	<div style="text-align:center;height: 33%;">
       <a href="Apply.jsp" >本周日程安排</a>  
     </div> 
   </body>

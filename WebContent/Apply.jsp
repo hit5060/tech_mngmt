@@ -62,7 +62,7 @@ div{
 		String sql = "SELECT * FROM teachers ";
         ResultSet rs = statement.executeQuery(sql);  
     %> 
-		<h2>所有教师</h2>
+		<h2>本周日程安排</h2>
 		<div>
 	<center>
 	<form action="arrangement" >
