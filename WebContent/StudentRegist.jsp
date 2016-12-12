@@ -17,6 +17,11 @@ h2{
 	font-family:"微软雅黑";
 	margin:0;
 }
+body{
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
+
+}
 
 </style>
 <title>学生注册</title>

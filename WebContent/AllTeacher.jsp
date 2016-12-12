@@ -19,6 +19,8 @@ td{
 }
 
 body {
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	font-family: "微软雅黑";
 	font-size: 1.5em;
 }
@@ -102,8 +104,10 @@ div{
 				<a
 				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(12)%>">查看详细信息</a>
 				<br>
+				
+				<!-- 发出申请需要加传参  -->
 				<a
-				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a>
+				href="<%=request.getContextPath()%>/StudentApply.action?userid=<%=rs.getString(12)%>">发出申请</a>
 			</td>
 		</tr>
 		<%  

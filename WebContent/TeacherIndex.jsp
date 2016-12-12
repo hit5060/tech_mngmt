@@ -6,6 +6,8 @@
   <!--  <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
   <style type="text/css">
 body{
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	margin:0;
 	padding:0;
 	font-size:5em;
@@ -25,7 +27,7 @@ a{
   <!-- <div id="formbackground" style="position:absolute; width:100%; height:100%; z-index:-1">  
   	<img src="imge/image1.jpg" height="100%" width="100%"/>  
   </div>  -->
- 
+
   	<div style="height: 33%;text-align:center">
   	  <a href="TeacherInfo.action" >个人信息</a>
     </div>

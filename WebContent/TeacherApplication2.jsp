@@ -4,6 +4,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
+
+<head>
+<link rel="stylesheet" href="css/main.css">
+<title>学生申请管理</title>
+<s:head />
 <style type="text/css">
 table {
 	border: 0px #CCCCCC solid;
@@ -17,19 +22,23 @@ td, th {
 }
 
 body {
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	font-family: 微软雅黑, 宋体;
 	font-size: 1em;
 	color: black;
 }
+h3{
+	font-size:3em;
+	font-family:"微软雅黑";
+	margin-bottom:1em;
+}
 </style>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>学生申请管理</title>
-<s:head />
 </head>
 <body>
 <div style="text-align:center;">
-申请教师
+<h3>申请教师</h3>
+<center>
 <table align="center">
 		<tr>
 			<th>教师姓名  </th>
@@ -54,7 +63,7 @@ body {
 			</tr>
 		</s:iterator>
 	</table>
-接受教师
+<h3>接受教师</h3>
 	<table align="center">
 		<tr>
 			<th>教师姓名  </th>
@@ -79,7 +88,7 @@ body {
 			</tr>
 		</s:iterator>
 	</table>
-	拒绝教师
+	<h3>拒绝教师</h3>
 	<table align="center">
 		<tr>
 			<th>教师姓名  </th>
@@ -104,6 +113,7 @@ body {
 			</tr>
 		</s:iterator>
 	</table>
+	</center>
 	
 	<div style="text-align: center;">
 		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input

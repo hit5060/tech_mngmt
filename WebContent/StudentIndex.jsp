@@ -5,6 +5,8 @@
    <link rel="stylesheet" href="css/main.css">
   <style type="text/css">
 body{
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	margin:0;
 	padding:0;
 	font-size:5em;

@@ -26,6 +26,8 @@ td{
 }
 
 body {
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	font-family: "微软雅黑";
 	font-size: 1.5em;
 }
