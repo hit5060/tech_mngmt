@@ -5,6 +5,7 @@
   
 <struts>  
 	<constant name="struts.configuration.xml.reload" value="true"/>   
+	
     <package name="T_S_Management" extends="struts-default">  
     
        <action name="login" class="com.T_S_Management.Action.UsersAction" method="login">  

@@ -11,7 +11,7 @@ table {
 }
 
 td, th {
-	height: 30px;
+	height: 30px;l
 	border: #CCCCCC 0px solid;
 	text-align: center;
 }

@@ -101,7 +101,7 @@ div{
 			</th>
 			<td>
 				<%  
-					out.print(rs.getString(13));
+					out.print(rs.getString(10));
                 %>
 			</td>
 		</tr>

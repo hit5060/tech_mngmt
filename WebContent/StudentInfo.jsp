@@ -7,7 +7,7 @@
 
 <head>
  <link rel="stylesheet" href="css/main.css">
-<title>申请管理</title>
+<title>学生信息</title>
 <style type="text/css">
 table {
 	text-align:center;
