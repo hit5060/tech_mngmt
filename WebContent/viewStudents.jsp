@@ -4,6 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
+<head>
+<link rel="stylesheet" href="css/main.css">
+<title>教师申请管理</title>
+<s:head />
 <style type="text/css">
 table {
 	border: 0px #CCCCCC solid;
@@ -12,25 +16,28 @@ table {
 
 td, th {
 	height: 30px;
-	border: #CCCCCC 0px solid;
 	text-align: center;
 }
 
 body {
+	background-image: url(img/3.jpg);
+	background-attachment:fixed;
 	font-family: 微软雅黑, 宋体;
-	font-size: 1em;
+	font-size: 1.5em;
 	color: black;
 }
+h3{
+	font-size:2.5em;
+	font-family:"微软雅黑";
+	margin-bottom:1em;
+}
 </style>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>教师申请管理</title>
-<s:head />
 </head>
 <body>
 
 <div style="text-align:center;">
-申请学生
+<h3>申请学生</h3>
+<center>
 <table align="center">
 		<tr>
 			<th>学生姓名  </th>
@@ -43,30 +50,28 @@ body {
 		</tr>
 		<s:iterator value="appliedStudents" var = "var">
 			<tr>
-		 		<td><a
-					href="<%=request.getContextPath()%>/StudentInfo.action?userId=<s:property value="userId" />&qrauthorid=电话">
-						<s:property value="name" />
-				</a></td>
+		 		<td><s:property value="name" /></td>
 				<td><s:property value="#var.major" /></td>
 				<td><s:property value="#var.number" /></td>
 				<td><s:property value="#var.tel" /></td>
 				<td><s:property value="#var.mail" /></td>
 				<td><s:property value="#var.introduce" /></td>
-				<td><a
-					href="<%=request.getContextPath()%>/teacherAccept.action?relatedStudent=<s:property value="#var.id" />">
-						<input type=button value="接受" style="width: 60px;">
+				<td>
+				<a
+					href="<%=request.getContextPath()%>/accept.action?acceptedStudent=<s:property value="#var.userId" />">接受</a>
 					
 				</a>
-				<a
-					href="<%=request.getContextPath()%>/teacherReject.action?relatedStudent=<s:property value="#var.id" />">
-						<input type=button value="拒绝" style="width: 60px;">
+				<a 
+					href="<%=request.getContextPath()%>/reject.action?rejectedStudent=<s:property value="#var.userId" />">拒绝</a>
 					
 				</a>
 				</td>
 			</tr>
 		</s:iterator>
 	</table>
-已接受学生
+	</center>
+<h3>已接受学生</h3>
+<center>
 	<table align="center">
 		<tr>
 			<th>学生姓名  </th>
@@ -75,34 +80,21 @@ body {
 			<th>电话           </th>
 			<th>邮箱           </th>
 			<th>简介           </th>
-			<th>操作            </th>
 		</tr>
 		<s:iterator value="acceptedStudents" var = "var">
 			<tr>
-		 		<td><a
-					href="<%=request.getContextPath()%>/StudentInfo.action?userId=<s:property value="userId" />&qrauthorid=电话">
-						<s:property value="name" />
-				</a></td>
+		 		<td><s:property value="name" /></td>
 				<td><s:property value="#var.major" /></td>
 				<td><s:property value="#var.number" /></td>
 				<td><s:property value="#var.tel" /></td>
 				<td><s:property value="#var.mail" /></td>
 				<td><s:property value="#var.introduce" /></td>
-				<td><a
-					href="<%=request.getContextPath()%>/accept.action?id=<s:property value="#var.id" />">
-						<input type=button value="接受" style="width: 60px;">
-					
-				</a>
-				<a
-					href="<%=request.getContextPath()%>/reject.action?id=<s:property value="#var.id" />">
-						<input type=button value="拒绝" style="width: 60px;">
-					
-				</a>
-				</td>
 			</tr>
 		</s:iterator>
 	</table>
-已拒绝学生
+	</center>
+<h3>已拒绝学生</h3>
+<center>
 	<table align="center">
 		<tr>
 			<th>学生姓名  </th>
@@ -111,33 +103,19 @@ body {
 			<th>电话           </th>
 			<th>邮箱           </th>
 			<th>简介           </th>
-			<th>操作            </th>
 		</tr>
 		<s:iterator value="rejectedStudents" var = "var">
 			<tr>
-		 		<td><a
-					href="<%=request.getContextPath()%>/StudentInfo.action?userId=<s:property value="userId" />&qrauthorid=电话">
-						<s:property value="name" />
-				</a></td>
+		 		<td><s:property value="name" /></td>
 				<td><s:property value="#var.major" /></td>
 				<td><s:property value="#var.number" /></td>
 				<td><s:property value="#var.tel" /></td>
 				<td><s:property value="#var.mail" /></td>
 				<td><s:property value="#var.introduce" /></td>
-				<td><a
-					href="<%=request.getContextPath()%>/apply.action?id=<s:property value="#var.id" />">
-						<input type=button value="接受" style="width: 60px;">
-					
-				</a>
-				<a
-					href="<%=request.getContextPath()%>/apply.action?id=<s:property value="#var.id" />">
-						<input type=button value="拒绝" style="width: 60px;">
-					
-				</a>
-				</td>
 			</tr>
 		</s:iterator>
 	</table>
+	</center>
 	
 	<div style="text-align: center;">
 		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input

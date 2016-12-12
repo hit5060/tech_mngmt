@@ -43,7 +43,7 @@ div{
 		<img src="imge/image4.jpg" height="100%" width="100%" />
 	</div> -->
 	
-	 <%  
+	<%--  <%  
         //驱动程序名   
         String driverName = "com.mysql.jdbc.Driver";  
         //数据库用户名   
@@ -61,7 +61,7 @@ div{
         Statement statement = connection.createStatement();  
 		String sql = "SELECT * FROM teachers ";
         ResultSet rs = statement.executeQuery(sql);  
-    %> 
+    %>  --%>
 		<h2>教师日程安排</h2>
 		<div>
 	<center>
@@ -117,14 +117,13 @@ div{
                     out.print("一二节课");  
                 %>
 			</th>
-			<td><a href="<%=request.getContextPath()%>/S_Apply.action">${s1}</a></td>
-			<td><a href="<%=request.getContextPath()%>/S_Apply.action">${s2}</a></td>
-			<td>${s3}</td>
-			
-			<td>${s4}</td>
-			<td>${s5}</td>
-			<td>${s6}</td>
-			<td>${s7}</td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s1}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s2}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s3}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s4}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s5}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s6}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s7}</a></td>
 		</tr>
 		
 			<tr>
@@ -133,13 +132,13 @@ div{
                     out.print("三四节课");  
                 %>
 			</th>
-			<td>${s8}</td>
-			<td>${s9}</td>
-			<td>${s10}</td>
-			<td>${s11}</td>
-			<td>${s12}</td>
-			<td>${s13}</td>
-			<td>${s14}</td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s8}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s9}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s10}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s11}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s12}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s13}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s14}</a></td>
 		</tr>
 		
 		<tr>
@@ -148,13 +147,13 @@ div{
                     out.print("五六节课");  
                 %>
 			</th>
-			<td>${s15}</td>
-			<td>${s16}</td>
-			<td>${s17}</td>
-			<td>${s18}</td>
-			<td>${s19}</td>
-			<td>${s20}</td>
-			<td>${s21}</td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s15}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s16}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s17}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s18}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s19}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s20}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s21}</a></td>
 		</tr>
 		
 		<tr>
@@ -163,13 +162,13 @@ div{
                     out.print("七八节课");  
                 %>
 			</th>
-			<td>${s22}</td>
-			<td>${s23}</td>
-			<td>${s24}</td>
-			<td>${s25}</td>
-			<td>${s26}</td>
-			<td>${s27}</td>
-			<td>${s28}</td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s22}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s23}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s24}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s25}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s26}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s27}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s28}</a></td>
 		</tr>
 		
 		<tr>
@@ -178,13 +177,13 @@ div{
                     out.print("晚课");  
                 %>
 			</th>
-			<td>${s29}</td>
-			<td>${s30}</td>
-			<td>${s31}</td>
-			<td>${s32}</td>
-			<td>${s33}</td>
-			<td>${s34}</td>
-			<td>${s35}</td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s29}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s30}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s31}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s32}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s33}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s34}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s35}</a></td>
 		</tr>	
 	</table>
 	</center>

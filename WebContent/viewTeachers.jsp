@@ -37,7 +37,7 @@ h3{
 </head>
 <body>
 <div style="text-align:center;">
-<h3>申请教师</h3>
+<%-- <h3>申请教师</h3>
 <center>
 <table align="center">
 		<tr>
@@ -53,7 +53,7 @@ h3{
 		<s:iterator value="appliedTeachers" var = "var">
 			<tr>
 				<td><s:property value="#var.name" /></td>
-		 		<td><s:property value="college" /></td>
+		 		<td><s:property value="#var.college" /></td>
 				<td><s:property value="#var.title" /></td>
 				<td><s:property value="#var.office" /></td>
 				<td><s:property value="#var.tel" /></td>
@@ -62,7 +62,7 @@ h3{
 				
 			</tr>
 		</s:iterator>
-	</table>
+	</table> --%>
 <h3>接受教师</h3>
 	<table align="center">
 		<tr>
@@ -78,7 +78,7 @@ h3{
 		<s:iterator value="acceptedTeachers" var = "var">
 			<tr>
 				<td><s:property value="#var.name" /></td>
-		 		<td><s:property value="college" /></td>
+		 		<td><s:property value="#var.college" /></td>
 				<td><s:property value="#var.title" /></td>
 				<td><s:property value="#var.office" /></td>
 				<td><s:property value="#var.tel" /></td>
@@ -103,7 +103,7 @@ h3{
 		<s:iterator value="rejectedTeachers" var = "var">
 			<tr>
 				<td><s:property value="#var.name" /></td>
-		 		<td><s:property value="college" /></td>
+		 		<td><s:property value="#var.college" /></td>
 				<td><s:property value="#var.title" /></td>
 				<td><s:property value="#var.office" /></td>
 				<td><s:property value="#var.tel" /></td>

@@ -36,13 +36,13 @@ h2{
 </head>
 <body>
    <div style="text-align: center">
-   <h2>登陆</h2>
+   <h2>登录</h2>
    <center>
    <table>
      <s:form action="login" >
            <s:textfield name="nuserId" label="用户名"/>
            <s:textfield name="npassword" label="密   码" />
-           <s:submit value="登 陆"/>     
+           <s:submit value="登录"/>     
      </s:form>
      </table>
   </center>

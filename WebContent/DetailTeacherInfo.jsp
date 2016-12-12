@@ -256,6 +256,9 @@ div{
     
 		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
 			type=button value="返回" /></a>
+			
+		<a href="javascript:;" onclick="location='TeacherIndex.jsp'"><input
+			type=button value="返回主页" /></a>
 	</div>
 </body>
 </html>

@@ -57,6 +57,8 @@ public class TeachersAction {
 	static String passID;
 	public String searchTeacher;
 	
+	private static String passTeacherUserId;
+	
 	
 	/***************日程管理功能的变量定义*************************/
 	private String s1;
@@ -128,7 +130,7 @@ public class TeachersAction {
 			//插入改成更新！！！！
 		    //
 			//
-			String sql = "update teachers set name = '"+name+"',office  = '"+office+"',title = '"+title+"',tel = '"+tel+"',mail = '"+mail+"', introduce = '"+introduce+"', college = '"+college+"' where userid = "+userId;
+			String sql = "update teachers set name = '"+name+"',office  = '"+office+"',title = '"+title+"',tel = '"+tel+"',mail = '"+mail+"', introduce = '"+introduce+"', college = '"+college+"' where userid = '" + userId + "'";
 			System.out.println(sql);
 			result = stmt.executeUpdate(sql);
 			System.out.println("result="+result);
@@ -187,9 +189,9 @@ public class TeachersAction {
 		
 		connect(); //连接数据库
 		
-		String sql1 = "select * from students where application like'" + userId + "':A"; //查询申请学生
-		String sql2 = "select * from students where application like'" + userId + "':B"; //查询接受学生
-		String sql3 = "select * from students where application like'" + userId + "':C"; //查询拒绝学生
+		String sql1 = "select * from students where application like '%" + userId + ":A%'"; //查询申请学生
+		String sql2 = "select * from students where application like '%" + userId + ":B%'"; //查询接受学生
+		String sql3 = "select * from students where application like '%" + userId + ":C%'"; //查询拒绝学生
 		try{
 			System.out.println("查询申请学生的语句"+sql1);
 			PreparedStatement ps = conn.prepareStatement(sql1);
@@ -259,7 +261,7 @@ public class TeachersAction {
 		connect(); //连接数据库
 		int result = 0;
 		String application = new String(); //将数据库中的关系语句复制到该String
-		String sql1 = "select application from students where userId = '" +acceptedStudent; //查询申请学生
+		String sql1 = "select application from students where userId = '" +acceptedStudent+"'"; //查询申请学生
 		//首先将关系语句在要接受的学生的数据库中提取出来
 		try{
 			System.out.println("选取接受学生的申请关系的语句"+sql1);
@@ -274,11 +276,12 @@ public class TeachersAction {
 			System.out.println(e.getMessage());
 		}
 		//生成新的关系语句，将其更新到接受的学生的数据库关系字段中
-		String sub = userId + ":A;";
+		String sub = userId + ":A";
 		System.out.println("接受学生申请的老师的关系表达式:"+sub);
-		String[] subs = application.split(sub);
-		application = subs[0] + userId + ":B;" + subs[1];
-		String sql2 = "update students set application = '"+application+"' where userid = "+acceptedStudent;
+		String[]subs = new String[10];
+		subs = application.split(sub);
+		application = subs[0] + userId + ":B" + subs[1];
+		String sql2 = "update students set application = '"+application+"' where userid = '"+acceptedStudent +"'";
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -289,6 +292,7 @@ public class TeachersAction {
 			System.out.println(e.getMessage());
 		}
 		disconnect();
+		viewStudents();
 		return "SUCCESS";
 	}
    
@@ -301,7 +305,7 @@ public class TeachersAction {
 		connect(); //连接数据库
 		int result = 0;
 		String application = new String(); //将数据库中的关系语句复制到该String
-		String sql1 = "select application from students where userId = '" +rejectedStudent; //查询拒绝学生
+		String sql1 = "select application from students where userId = '" +rejectedStudent +"'"; //查询拒绝学生
 		//首先将关系语句在要拒绝的学生的数据库中提取出来
 		try{
 			System.out.println("选取拒绝学生的申请关系的语句"+sql1);
@@ -316,11 +320,12 @@ public class TeachersAction {
 			System.out.println(e.getMessage());
 		}
 		//生成新的关系语句，将其更新到拒绝的学生的数据库关系字段中
-		String sub = userId + ":A;";
+		String sub = userId + ":A";
 		System.out.println("拒绝学生申请的老师的关系表达式:"+sub);
-		String[] subs = application.split(sub);
-		application = subs[0] + userId + ":C;" + subs[1];
-		String sql2 = "update students set application = '"+application+"' where userid = "+rejectedStudent;
+		String[]subs = new String[10];
+		subs = application.split(sub);
+		application = subs[0] + userId + ":C" + subs[1];
+		String sql2 = "update students set application = '"+application+"' where userid = '" + rejectedStudent +"'";
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -331,6 +336,7 @@ public class TeachersAction {
 			System.out.println(e.getMessage());
 		}
 		disconnect();
+		viewStudents();
 		return "SUCCESS";
 	}
 		
@@ -377,7 +383,7 @@ public class TeachersAction {
 		try {
 			Statement stmt = conn.createStatement();
 
-			String sql = "update teachers set arrangement = '"+arrgmt+"' where userid = "+userId;
+			String sql = "update teachers set arrangement = '"+arrgmt+"' where userid = '"+ userId +"'";
 			System.out.println(sql);
 			result = stmt.executeUpdate(sql);
 			System.out.println("result="+result);
@@ -385,10 +391,15 @@ public class TeachersAction {
 			System.out.println(e.getMessage());
 		}
 		disconnect();
+		
+		teacherViewArrangement();
+		
 		return "SUCCESS";
 	}
 	
-	public String viewArrangement(){
+	public String studentViewArrangement(){
+		passTeacherUserId = viewTeacher;
+		
 		System.out.println("学生功能-查看教师日程，教师ID："+viewTeacher);
 		
 		connect(); //连接数据库
@@ -409,41 +420,395 @@ public class TeachersAction {
 			System.out.println(e.getMessage());
 		}
 		
-		s1 = arrgmt.substring(0, 0);
-		s2 = arrgmt.substring(1, 1);
-		s3 = arrgmt.substring(2, 2);
-		s4 = arrgmt.substring(3, 3);
-		s5 = arrgmt.substring(4, 4);
-		s6 = arrgmt.substring(5, 5);
-		s7 = arrgmt.substring(6, 6);
-		s8 = arrgmt.substring(7, 7);
-		s9 = arrgmt.substring(8, 8);
-		s10 = arrgmt.substring(9, 9);
-		s11 = arrgmt.substring(10, 10);
-		s12 = arrgmt.substring(11, 11);
-		s13 = arrgmt.substring(12, 12);
-		s14 = arrgmt.substring(13, 13);
-		s15 = arrgmt.substring(14, 14);
-		s16 = arrgmt.substring(15, 15);
-		s17 = arrgmt.substring(16, 16);
-		s18 = arrgmt.substring(17, 17);
-		s19 = arrgmt.substring(18, 18);
-		s20 = arrgmt.substring(19, 19);
-		s21 = arrgmt.substring(20, 20);
-		s22 = arrgmt.substring(21, 21);
-		s23 = arrgmt.substring(22, 22);
-		s24 = arrgmt.substring(23, 23);
-		s25 = arrgmt.substring(24, 24);
-		s26 = arrgmt.substring(25, 25);
-		s27 = arrgmt.substring(26, 26);
-		s28 = arrgmt.substring(27, 27);
-		s29 = arrgmt.substring(28, 28);
-		s30 = arrgmt.substring(29, 29);
-		s31 = arrgmt.substring(30, 30);
-		s32 = arrgmt.substring(31, 31);
-		s33 = arrgmt.substring(32, 32);
-		s34 = arrgmt.substring(33, 33);
-		s35 = arrgmt.substring(34, 34);
+		
+		s1 = arrgmt.substring(0, 1);
+		System.out.println(s1);
+		if(s1.equals("0")){
+			System.out.println("here!");
+			s1 = "";
+		}
+			
+		else
+			s1 = "√";
+		s2 = arrgmt.substring(1, 2);
+		if(s2.equals("0"))
+			s2 = "";
+		else
+			s2 = "√";
+		s3 = arrgmt.substring(2, 3);
+		if(s3.equals("0"))
+			s3 = "";
+		else
+			s3 = "√";
+		s4 = arrgmt.substring(3, 4);
+		if(s4.equals("0"))
+			s4 = "";
+		else
+			s4 = "√";
+		s5 = arrgmt.substring(4, 5);
+		if(s5.equals("0"))
+			s5 = "";
+		else
+			s5 = "√";
+		s6 = arrgmt.substring(5, 6);
+		if(s6.equals("0"))
+			s6 = "";
+		else
+			s6 = "√";
+		s7 = arrgmt.substring(6, 7);
+		if(s7.equals("0"))
+			s7 = "";
+		else
+			s7 = "√";
+		s8 = arrgmt.substring(7, 8);
+		if(s8.equals("0"))
+			s8 = "";
+		else
+			s8 = "√";
+		s9 = arrgmt.substring(8, 9);
+		if(s9.equals("0"))
+			s9 = "";
+		else
+			s9 = "√";
+		s10 = arrgmt.substring(9, 10);
+		if(s10.equals("0"))
+			s10 = "";
+		else
+			s10 = "√";
+		s11 = arrgmt.substring(10, 11);
+		if(s11.equals("0"))
+			s11 = "";
+		else
+			s11 = "√";
+		s12 = arrgmt.substring(11, 12);
+		if(s12.equals("0"))
+			s12 = "";
+		else
+			s12 = "√";
+		s13 = arrgmt.substring(12, 13);
+		if(s13.equals("0"))
+			s13 = "";
+		else
+			s13 = "√";
+		s14 = arrgmt.substring(13, 14);
+		if(s14.equals("0"))
+			s14 = "";
+		else
+			s14 = "√";
+		s15 = arrgmt.substring(14, 15);
+		if(s15.equals("0"))
+			s15 = "";
+		else
+			s15 = "√";
+		s16 = arrgmt.substring(15, 16);
+		if(s16.equals("0"))
+			s16 = "";
+		else
+			s16 = "√";
+		s17 = arrgmt.substring(16, 17);
+		if(s17.equals("0"))
+			s17 = "";
+		else
+			s17 = "√";
+		s18 = arrgmt.substring(17, 18);
+		if(s18.equals("0"))
+			s18 = "";
+		else
+			s18 = "√";
+		s19 = arrgmt.substring(18, 19);
+		if(s19.equals("0"))
+			s19 = "";
+		else
+			s19 = "√";
+		s20 = arrgmt.substring(19, 20);
+		if(s20.equals("0"))
+			s20 = "";
+		else
+			s20 = "√";
+		s21 = arrgmt.substring(20, 21);
+		if(s21.equals("0"))
+			s21 = "";
+		else
+			s21 = "√";
+		s22 = arrgmt.substring(21, 22);
+		if(s22.equals("0"))
+			s22 = "";
+		else
+			s22 = "√";
+		s23 = arrgmt.substring(22, 23);
+		if(s23.equals("0"))
+			s23 = "";
+		else
+			s23 = "√";
+		s24 = arrgmt.substring(23, 24);
+		if(s24.equals("0"))
+			s24 = "";
+		else
+			s24 = "√";
+		s25 = arrgmt.substring(24, 25);
+		if(s25.equals("0"))
+			s25 = "";
+		else
+			s25 = "√";
+		s26 = arrgmt.substring(25, 26);
+		if(s26.equals("0"))
+			s26 = "";
+		else
+			s26 = "√";
+		s27 = arrgmt.substring(26, 27);
+		if(s27.equals("0"))
+			s27 = "";
+		else
+			s27 = "√";
+		s28 = arrgmt.substring(27, 28);
+		if(s28.equals("0"))
+			s28 = "";
+		else
+			s28 = "√";
+		s29 = arrgmt.substring(28, 29);
+		if(s29.equals("0"))
+			s29 = "";
+		else
+			s29 = "√";
+		s30 = arrgmt.substring(29, 30);
+		if(s30.equals("0"))
+			s30 = "";
+		else
+			s30 = "√";
+		s31 = arrgmt.substring(30, 31);
+		if(s31.equals("0"))
+			s31 = "";
+		else
+			s31 = "√";
+		s32 = arrgmt.substring(31, 32);
+		if(s32.equals("0"))
+			s32 = "";
+		else
+			s32 = "√";
+		s33 = arrgmt.substring(32, 33);
+		if(s33.equals("0"))
+			s33 = "";
+		else
+			s33 = "√";
+		s34 = arrgmt.substring(33, 34);
+		if(s34.equals("0"))
+			s34 = "";
+		else
+			s34 = "√";
+		s35 = arrgmt.substring(34, 35);
+		if(s35.equals("0"))
+			s35 = "";
+		else
+			s35 = "√";
+		
+		disconnect();
+		return "SUCCESS";
+	}
+	
+	public String teacherViewArrangement(){
+		userId = UsersAction.ID;
+		ActionContext.getContext().put("teacherID", userId);
+		System.out.println("教师功能-拒绝学生申请，教师ID："+userId);
+		
+		System.out.println("教师功能-查看教师日程，教师ID："+userId);
+		
+		connect(); //连接数据库
+		String sql = "select arrangement from teachers where userId = '" + userId +"'"; 
+		
+		int result = 0;
+		String arrgmt = "";
+		try{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				arrgmt = rs.getString(1);
+				System.out.println("教师"+userId+"的日程安排"+arrgmt);
+			}
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		
+		s1 = arrgmt.substring(0, 1);
+		if(s1.equals("0")){
+			System.out.println("here!");
+			s1 = "";
+		}
+			
+		else
+			s1 = "√";
+		s2 = arrgmt.substring(1, 2);
+		if(s2.equals("0"))
+			s2 = "";
+		else
+			s2 = "√";
+		s3 = arrgmt.substring(2, 3);
+		if(s3.equals("0"))
+			s3 = "";
+		else
+			s3 = "√";
+		s4 = arrgmt.substring(3, 4);
+		if(s4.equals("0"))
+			s4 = "";
+		else
+			s4 = "√";
+		s5 = arrgmt.substring(4, 5);
+		if(s5.equals("0"))
+			s5 = "";
+		else
+			s5 = "√";
+		s6 = arrgmt.substring(5, 6);
+		if(s6.equals("0"))
+			s6 = "";
+		else
+			s6 = "√";
+		s7 = arrgmt.substring(6, 7);
+		if(s7.equals("0"))
+			s7 = "";
+		else
+			s7 = "√";
+		s8 = arrgmt.substring(7, 8);
+		if(s8.equals("0"))
+			s8 = "";
+		else
+			s8 = "√";
+		s9 = arrgmt.substring(8, 9);
+		if(s9.equals("0"))
+			s9 = "";
+		else
+			s9 = "√";
+		s10 = arrgmt.substring(9, 10);
+		if(s10.equals("0"))
+			s10 = "";
+		else
+			s10 = "√";
+		s11 = arrgmt.substring(10, 11);
+		if(s11.equals("0"))
+			s11 = "";
+		else
+			s11 = "√";
+		s12 = arrgmt.substring(11, 12);
+		if(s12.equals("0"))
+			s12 = "";
+		else
+			s12 = "√";
+		s13 = arrgmt.substring(12, 13);
+		if(s13.equals("0"))
+			s13 = "";
+		else
+			s13 = "√";
+		s14 = arrgmt.substring(13, 14);
+		if(s14.equals("0"))
+			s14 = "";
+		else
+			s14 = "√";
+		s15 = arrgmt.substring(14, 15);
+		if(s15.equals("0"))
+			s15 = "";
+		else
+			s15 = "√";
+		s16 = arrgmt.substring(15, 16);
+		if(s16.equals("0"))
+			s16 = "";
+		else
+			s16 = "√";
+		s17 = arrgmt.substring(16, 17);
+		if(s17.equals("0"))
+			s17 = "";
+		else
+			s17 = "√";
+		s18 = arrgmt.substring(17, 18);
+		if(s18.equals("0"))
+			s18 = "";
+		else
+			s18 = "√";
+		s19 = arrgmt.substring(18, 19);
+		if(s19.equals("0"))
+			s19 = "";
+		else
+			s19 = "√";
+		s20 = arrgmt.substring(19, 20);
+		if(s20.equals("0"))
+			s20 = "";
+		else
+			s20 = "√";
+		s21 = arrgmt.substring(20, 21);
+		if(s21.equals("0"))
+			s21 = "";
+		else
+			s21 = "√";
+		s22 = arrgmt.substring(21, 22);
+		if(s22.equals("0"))
+			s22 = "";
+		else
+			s22 = "√";
+		s23 = arrgmt.substring(22, 23);
+		if(s23.equals("0"))
+			s23 = "";
+		else
+			s23 = "√";
+		s24 = arrgmt.substring(23, 24);
+		if(s24.equals("0"))
+			s24 = "";
+		else
+			s24 = "√";
+		s25 = arrgmt.substring(24, 25);
+		if(s25.equals("0"))
+			s25 = "";
+		else
+			s25 = "√";
+		s26 = arrgmt.substring(25, 26);
+		if(s26.equals("0"))
+			s26 = "";
+		else
+			s26 = "√";
+		s27 = arrgmt.substring(26, 27);
+		if(s27.equals("0"))
+			s27 = "";
+		else
+			s27 = "√";
+		s28 = arrgmt.substring(27, 28);
+		if(s28.equals("0"))
+			s28 = "";
+		else
+			s28 = "√";
+		s29 = arrgmt.substring(28, 29);
+		if(s29.equals("0"))
+			s29 = "";
+		else
+			s29 = "√";
+		s30 = arrgmt.substring(29, 30);
+		if(s30.equals("0"))
+			s30 = "";
+		else
+			s30 = "√";
+		s31 = arrgmt.substring(30, 31);
+		if(s31.equals("0"))
+			s31 = "";
+		else
+			s31 = "√";
+		s32 = arrgmt.substring(31, 32);
+		if(s32.equals("0"))
+			s32 = "";
+		else
+			s32 = "√";
+		s33 = arrgmt.substring(32, 33);
+		if(s33.equals("0"))
+			s33 = "";
+		else
+			s33 = "√";
+		s34 = arrgmt.substring(33, 34);
+		if(s34.equals("0"))
+			s34 = "";
+		else
+			s34 = "√";
+		s35 = arrgmt.substring(34, 35);
+		if(s35.equals("0"))
+			s35 = "";
+		else
+			s35 = "√";
 		
 		disconnect();
 		return "SUCCESS";
@@ -451,7 +816,7 @@ public class TeachersAction {
 	/*******************************************************************************/
 	public String searchMyself(){
 		userId = UsersAction.ID;
-		String sql = "select * from teachers where userid="+userId;
+		String sql = "select * from teachers where userid = '"+userId +"'";
 		connect();
 		try{
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -956,6 +1321,14 @@ public class TeachersAction {
 
 	public void setViewTeacher(String viewTeacher) {
 		this.viewTeacher = viewTeacher;
+	}
+
+	public static String getPassTeacherUserId() {
+		return passTeacherUserId;
+	}
+
+	public static void setPassTeacherUserId(String passTeacherUserId) {
+		TeachersAction.passTeacherUserId = passTeacherUserId;
 	}
 
 }

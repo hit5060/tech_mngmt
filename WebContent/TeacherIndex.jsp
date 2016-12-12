@@ -32,10 +32,10 @@ a{
   	  <a href="TeacherInfo.action" >个人信息</a>
     </div>
     <div style="text-align:center;height: 33%;">
-  	  <a href="TeacherApplication.action" >申请管理</a>
+  	  <a href="viewStudents.action" >申请管理</a>
     </div>
 	<div style="text-align:center;height: 33%;">
-      <a href="Apply.jsp" >本周日程安排</a>  
+     <a href="<%=request.getContextPath()%>/teacherViewArrangement.action">本周日程安排</a>
     </div> 
   </body>
 </html>

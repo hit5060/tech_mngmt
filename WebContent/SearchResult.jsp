@@ -76,7 +76,8 @@ div{
 		temp = ActionContext.getContext().get("searchTeacher").toString();
 		System.out.println(temp);
 		
-		String sql = "SELECT * FROM teachers where name ="+temp;
+		String sql = "SELECT * FROM teachers WHERE CONCAT(`userid`,`name`,`introduce`,`college`) LIKE '%"+temp+"%'";
+
         ResultSet rs = statement.executeQuery(sql);  
         
        

@@ -13,7 +13,7 @@ public class StudentsAction {
 	private ArrayList<Students> acceptedStudents = new ArrayList<Students>();
 	private ArrayList<Students> rejectedStudents = new ArrayList<Students>();
 	//关联学生的教师集合
-	private ArrayList<Teachers> appliedTeachers = new ArrayList<Teachers>();
+	static private ArrayList<Teachers> appliedTeachers = new ArrayList<Teachers>();
 	private ArrayList<Teachers> acceptedTeachers = new ArrayList<Teachers>();
 	private ArrayList<Teachers> rejectedTeachers = new ArrayList<Teachers>();
 
@@ -45,6 +45,8 @@ public class StudentsAction {
 	public int[] ids = new int[10];
 	private String relatedTeacher;
 	private String relatedStudent;
+	
+	private String nname = new String();
 	
 	/*********************mySql函数**************************/
 	private void connect() {
@@ -79,7 +81,7 @@ public class StudentsAction {
 		try {
 			Statement stmt = conn.createStatement();
 			//System.out.println("nuserId="+nuserId+"npassword="+npassword);
-			String sql = "update students set name = '"+name+"',major  = '"+major+"',number = '"+number+"',tel = '"+tel+"',mail = '"+mail+"', introduce = '"+introduce+"' where userid = "+userId;
+			String sql = "update students set name = '"+name+"',major  = '"+major+"',number = '"+number+"',tel = '"+tel+"',mail = '"+mail+"', introduce = '"+introduce+"' where userid = '"+userId +"'";
 			System.out.println(sql);
 			result = stmt.executeUpdate(sql);
 			System.out.println("result="+result);
@@ -98,7 +100,7 @@ public class StudentsAction {
 		System.out.println(userId);
 		
 		String application = new String(); //将数据库中的关系语句复制到该String
-		String sql1 = "select application from students where userId = '" +userId; //查询当前学生的userId
+		String sql1 = "select application from students where userId = '" +userId +"'"; //查询当前学生的userId
 		//首先将关系语句在当前学生的数据库中提取出来
 		try{
 			System.out.println("选取当前学生的申请关系的语句"+sql1);
@@ -135,6 +137,7 @@ public class StudentsAction {
 					{
 						System.out.println("查询到一名教师，正在添加申请的老师到集合中");
 						appliedTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+						nname = rs.getString(2);
 					}
 				}catch(Exception e)
 				{
@@ -153,7 +156,8 @@ public class StudentsAction {
 					while(rs.next())
 					{
 						System.out.println("查询到一名教师，正在添加接受的老师到集合中");
-						appliedTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+						acceptedTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+
 					}
 				}catch(Exception e)
 				{
@@ -172,7 +176,8 @@ public class StudentsAction {
 					while(rs.next())
 					{
 						System.out.println("查询到一名教师，正在添加拒绝的老师到集合中");
-						appliedTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+						rejectedTeachers.add(new Teachers(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11)));
+
 					}
 				}catch(Exception e)
 				{
@@ -182,6 +187,10 @@ public class StudentsAction {
 		}
 		
 		disconnect();
+		for (Teachers t : appliedTeachers){
+			System.out.println(t.getName()+t.getCollege()+t.getTitle()+t.getOffice()+t.getTel()+t.getMail()+t.getIntroduce());
+
+		}
 		return "SUCCESS";
 	}
 	
@@ -195,7 +204,7 @@ public class StudentsAction {
 		int result = 0;
 		
 		String application = new String(); //将数据库中的关系语句复制到该String
-		String sql1 = "select application from students where userId = '" +userId; //查询当前学生的userId
+		String sql1 = "select application from students where userId = '" +userId +"'"; //查询当前学生的userId
 		//首先将关系语句在当前学生的数据库中提取出来
 		try{
 			System.out.println("选取当前学生的申请关系的语句"+sql1);
@@ -214,7 +223,7 @@ public class StudentsAction {
 		application = application + appliedTeacher + ":A;";//形成新的申请关系
 		System.out.println("修改后学生的申请关系为：" + application);
 		
-		String sql2 = "update students set application = '"+application+"' where userid = " + userId;
+		String sql2 = "update students set application = '"+application+"' where userid = '" + userId +"'";
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -225,6 +234,8 @@ public class StudentsAction {
 			System.out.println(e.getMessage());
 		}
 		disconnect();
+		
+		viewTeachers();
 		
 		return "SUCCESS";
 	}
@@ -412,5 +423,13 @@ public class StudentsAction {
 
 	public void setRejectedTeachers(ArrayList<Teachers> rejectedTeachers) {
 		this.rejectedTeachers = rejectedTeachers;
+	}
+
+	public String getNname() {
+		return nname;
+	}
+
+	public void setNname(String nname) {
+		this.nname = nname;
 	}
 }

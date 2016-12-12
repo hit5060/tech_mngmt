@@ -73,7 +73,7 @@ a{
         String temp;
 		temp = ActionContext.getContext().get("studentID").toString();
 		System.out.println(temp);
-		String sql = "SELECT * FROM students where userid="+ temp;
+		String sql = "SELECT * FROM students where userid= '"+ temp +"'";
         ResultSet rs = statement.executeQuery(sql);  
     %> 
 		<h2>详细信息</h2>

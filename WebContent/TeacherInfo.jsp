@@ -75,7 +75,7 @@ div{
         String temp;
 		temp = ActionContext.getContext().get("teacherID").toString();
 		System.out.println(temp);
-		String sql = "SELECT * FROM teachers where userid="+ temp;
+		String sql = "SELECT * FROM teachers where userid= '"+ temp +"'";
         ResultSet rs = statement.executeQuery(sql);  
     %> 
     

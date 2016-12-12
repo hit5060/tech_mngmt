@@ -48,7 +48,7 @@ public class UsersAction {
 			Statement stmt = conn.createStatement();
 			System.out.println("nuserId="+nuserId+"npassword="+npassword);
 			String sql1 = "insert into accounts values('"+nuserId+"','"+npassword+"',1)";
-			String sql2 = "insert into teachers(userid) values('"+nuserId+"')";
+			String sql2 = "insert into teachers(userid,arrangement) values('"+nuserId+"' , '0000000000000000000000000000000000000000')";
 			result1 = stmt.executeUpdate(sql1);
 			result2 = stmt.executeUpdate(sql2);
 			System.out.println("result1 = "+result1);
@@ -72,7 +72,7 @@ public class UsersAction {
 			Statement stmt = conn.createStatement();
 			System.out.println("nuserId="+nuserId+"npassword="+npassword);
 			String sql1 = "insert into accounts values('"+nuserId+"','"+npassword+"',2)";
-			String sql2 = "insert into students(userid) values('"+nuserId+"')";
+			String sql2 = "insert into students(userid,application) values('"+nuserId+"','')";
 			result1 = stmt.executeUpdate(sql1);
 			result2 = stmt.executeUpdate(sql2);
 			System.out.println("result="+result1);
@@ -94,7 +94,7 @@ public class UsersAction {
 		int pro = 0;
 		String rtn = null;
 		String realpass;
-		String sql = "select * from accounts where userId ="+nuserId;
+		String sql = "select * from accounts where userId = '"+ nuserId +"'";
 		System.out.println("sql ="+sql);
 		try{
 			PreparedStatement ps = conn.prepareStatement(sql);

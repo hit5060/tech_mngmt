@@ -33,7 +33,7 @@ a{
       <a href="AllTeacher.jsp" >教师浏览</a>
     </div>
     <div style="text-align:center;height: 33%;">
-  	  <a href="StudentApplication.action" >申请管理</a> 
+  	  <a href="viewTeachers.action" >申请管理</a> 
   	</div>
   	<!-- <div style="text-align:center;height: 25%;"> 
   	  <a href="queryAll.action" >查看全部</a>   
