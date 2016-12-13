@@ -63,7 +63,9 @@ h3{
 			</tr>
 		</s:iterator>
 	</table> --%>
+
 <h3>接受教师</h3>
+<center>
 	<table align="center">
 		<tr>
 			<th>教师姓名  </th>
@@ -88,7 +90,9 @@ h3{
 			</tr>
 		</s:iterator>
 	</table>
+	</center>
 	<h3>拒绝教师</h3>
+	<center>
 	<table align="center">
 		<tr>
 			<th>教师姓名  </th>

@@ -18,14 +18,33 @@ a{
 
 }
 
+#header{
+	font-size:.7em;
+	height:2em;
+}
+#header nav{
+	font-size:.7em;
+	line-height:1em;
+}
+#header nav .button{
+	font-size:1em;
+}
 </style>
     <title>学生主页</title>
   </head>
-  
+
  <body style="height: 100%;">
   <!-- <div id="formbackground" style="position:absolute; width:100%; height:100%; z-index:-1">  
   	<img src="imge/image1.jpg" height="100%" width="100%"/>  
   </div>  -->
+  <header id="header" >
+	<nav class="left">
+		您以<a href="StudentInfo.action"></a>学生的身份登录
+	</nav>
+	<nav class = "right">
+		<a href="Login.jsp" class="button alt">退出</a>
+</header>
+  
   	<div style="text-align:center;height: 33%;">
   	  <a href="StudentInfo.action" >个人信息</a>
   	</div>

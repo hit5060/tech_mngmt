@@ -2680,7 +2680,7 @@
 		-webkit-align-items: center;
 		-ms-align-items: center;
 		align-items: center;
-		background: #fff;
+		//background: #fff;
 		cursor: default;
 		height: 6em;
 		left: 0;
@@ -2711,17 +2711,17 @@
 		}
 
 			#header nav.left {
-				left: 2em;
+				left: 0em;
 			}
 
 			#header nav.right {
-				right: 2em;
+				right: .5em;
 			}
 
 			#header nav .button {
-				padding: 0 2em;
-				height: 3.25em;
-				line-height: 3.25em;
+				padding:0.2em;
+				height: 1.5em;
+				line-height: 1em;
 			}
 
 			#header nav a {
@@ -2776,7 +2776,7 @@
 			}
 
 			#header nav.left {
-				left: 1em;
+				left: 0em;
 			}
 
 			#header nav.right {

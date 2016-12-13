@@ -46,6 +46,7 @@ h3{
 			<th>电话           </th>
 			<th>邮箱           </th>
 			<th>简介           </th>
+			<th>时间           </th>
 			<th>操作            </th>
 		</tr>
 		<s:iterator value="appliedStudents" var = "var">
@@ -56,6 +57,7 @@ h3{
 				<td><s:property value="#var.tel" /></td>
 				<td><s:property value="#var.mail" /></td>
 				<td><s:property value="#var.introduce" /></td>
+				<td><s:property value="#var.time" /></td>
 				<td>
 				<a
 					href="<%=request.getContextPath()%>/accept.action?acceptedStudent=<s:property value="#var.userId" />">接受</a>
@@ -80,6 +82,7 @@ h3{
 			<th>电话           </th>
 			<th>邮箱           </th>
 			<th>简介           </th>
+			<th>时间           </th>
 		</tr>
 		<s:iterator value="acceptedStudents" var = "var">
 			<tr>
@@ -89,6 +92,7 @@ h3{
 				<td><s:property value="#var.tel" /></td>
 				<td><s:property value="#var.mail" /></td>
 				<td><s:property value="#var.introduce" /></td>
+				<td><s:property value="#var.time" /></td>
 			</tr>
 		</s:iterator>
 	</table>
@@ -103,6 +107,7 @@ h3{
 			<th>电话           </th>
 			<th>邮箱           </th>
 			<th>简介           </th>
+			<th>时间           </th>
 		</tr>
 		<s:iterator value="rejectedStudents" var = "var">
 			<tr>
@@ -112,14 +117,15 @@ h3{
 				<td><s:property value="#var.tel" /></td>
 				<td><s:property value="#var.mail" /></td>
 				<td><s:property value="#var.introduce" /></td>
+				<td><s:property value="#var.time" /></td>
 			</tr>
 		</s:iterator>
 	</table>
 	</center>
 	
 	<div style="text-align: center;">
-		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
-			type=button value="返回" /></a>
+		<a href="javascript:;" onclick="location='TeacherIndex.jsp'"><input
+			type=button value="返回主页" /></a>
 	</div>
 	</div>
 </body>

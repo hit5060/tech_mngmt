@@ -74,11 +74,6 @@ div{
 			</th>
 			<th>
 				<%  
-                    out.print("周日");  
-                %>
-			</th>
-			<th>
-				<%  
                     out.print("周一");  
                 %>
 			</th>
@@ -105,6 +100,11 @@ div{
 			<th>
 				<%  
                     out.print("周六");  
+                %>
+			</th>
+			<th>
+				<%  
+                    out.print("周日");  
                 %>
 			</th>
 			

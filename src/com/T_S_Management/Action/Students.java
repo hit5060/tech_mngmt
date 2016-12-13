@@ -11,9 +11,10 @@ public class Students {
 	private String mail;
 	private String userId;
 	private String application;
+	private String time;
 
 	Students(){}
-	Students(String id, String name, String major, String number, String tel, String photo, String introduce, String mail,String userId, String application){
+	Students(String id, String name, String major, String number, String tel, String photo, String introduce, String mail,String userId, String application,String time){
 		this.id = id;
 		this.name = name;
 		this.number = number;
@@ -24,6 +25,7 @@ public class Students {
 		this.introduce = introduce;
 		this.userId = userId;
 		this.application = application;
+		this.time = time;
 	}
 	public String getId() {
 		return id;
@@ -85,5 +87,11 @@ public class Students {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 }

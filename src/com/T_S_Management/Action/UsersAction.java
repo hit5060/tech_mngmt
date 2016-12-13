@@ -72,7 +72,7 @@ public class UsersAction {
 			Statement stmt = conn.createStatement();
 			System.out.println("nuserId="+nuserId+"npassword="+npassword);
 			String sql1 = "insert into accounts values('"+nuserId+"','"+npassword+"',2)";
-			String sql2 = "insert into students(userid,application) values('"+nuserId+"','')";
+			String sql2 = "insert into students(userid,application) values('"+nuserId+"',';')";
 			result1 = stmt.executeUpdate(sql1);
 			result2 = stmt.executeUpdate(sql2);
 			System.out.println("result="+result1);

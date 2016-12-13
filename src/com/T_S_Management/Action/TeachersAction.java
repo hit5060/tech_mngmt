@@ -198,7 +198,19 @@ public class TeachersAction {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				appliedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
+				String application = new String();
+				application = rs.getString(10);
+				System.out.println("该学生与老师之间的申请关系："+application);
+				String[] sub = application.split(userId + ":A");
+				int len = sub.length;
+				String time = new String();
+				if(len == 1){
+					time = sub[0].substring(0, 6);
+				}else{
+					time = sub[1].substring(0, 6);
+				}
+				System.out.println("添加申请学生到集合");
+				appliedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),time));
 			}
 		}catch(Exception e)
 		{
@@ -211,7 +223,19 @@ public class TeachersAction {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				acceptedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
+				String application = new String();
+				application = rs.getString(10);
+				System.out.println("该学生与老师之间的申请关系："+application);
+				String[] sub = application.split(userId + ":B");
+				int len = sub.length;
+				String time = new String();
+				if(len == 1){
+					time = sub[0].substring(0, 6);
+				}else{
+					time = sub[1].substring(0, 6);
+				}
+				System.out.println("添加接受学生到集合");
+				acceptedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),time));
 			}
 		}catch(Exception e)
 		{
@@ -224,7 +248,19 @@ public class TeachersAction {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				rejectedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
+				String application = new String();
+				application = rs.getString(10);
+				System.out.println("该学生与老师之间的申请关系："+application);
+				String[] sub = application.split(userId + ":C");
+				int len = sub.length;
+				String time = new String();
+				if(len == 1){
+					time = sub[0].substring(0,6);
+				}else{
+					time = sub[1].substring(0,6);
+				}
+				System.out.println("添加拒绝学生到集合");
+				rejectedStudents.add(new Students(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),time));
 			}
 		}catch(Exception e)
 		{

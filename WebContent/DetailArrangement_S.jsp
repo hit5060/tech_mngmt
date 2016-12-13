@@ -74,11 +74,6 @@ div{
 			</th>
 			<th>
 				<%  
-                    out.print("周日");  
-                %>
-			</th>
-			<th>
-				<%  
                     out.print("周一");  
                 %>
 			</th>
@@ -107,6 +102,11 @@ div{
                     out.print("周六");  
                 %>
 			</th>
+			<th>
+				<%  
+                    out.print("周日");  
+                %>
+			</th>
 			
 		</tr>
 
@@ -117,13 +117,13 @@ div{
                     out.print("一二节课");  
                 %>
 			</th>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s1}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s2}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s3}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s4}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s5}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s6}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s7}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期一一二节&appliedTeacher=${viewTeacher}">${s1}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期二一二节&appliedTeacher=${viewTeacher}">${s2}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期三一二节&appliedTeacher=${viewTeacher}">${s3}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期四一二节&appliedTeacher=${viewTeacher}">${s4}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期五一二节&appliedTeacher=${viewTeacher}">${s5}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期六一二节&appliedTeacher=${viewTeacher}">${s6}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期日一二节&appliedTeacher=${viewTeacher}">${s7}</a></td>
 		</tr>
 		
 			<tr>
@@ -132,13 +132,13 @@ div{
                     out.print("三四节课");  
                 %>
 			</th>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s8}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s9}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s10}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s11}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s12}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s13}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s14}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期一三四节&appliedTeacher=${viewTeacher}">${s8}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期二三四节&appliedTeacher=${viewTeacher}">${s9}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期三三四节&appliedTeacher=${viewTeacher}">${s10}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期四三四节&appliedTeacher=${viewTeacher}">${s11}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期五三四节&appliedTeacher=${viewTeacher}">${s12}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期六三四节&appliedTeacher=${viewTeacher}">${s13}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期日三四节&appliedTeacher=${viewTeacher}">${s14}</a></td>
 		</tr>
 		
 		<tr>
@@ -147,13 +147,13 @@ div{
                     out.print("五六节课");  
                 %>
 			</th>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s15}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s16}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s17}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s18}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s19}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s20}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s21}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期一五六节&appliedTeacher=${viewTeacher}">${s15}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期二五六节&appliedTeacher=${viewTeacher}">${s16}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期三五六节&appliedTeacher=${viewTeacher}">${s17}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期四五六节&appliedTeacher=${viewTeacher}">${s18}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期五五六节&appliedTeacher=${viewTeacher}">${s19}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期六五六节&appliedTeacher=${viewTeacher}">${s20}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期日五六节&appliedTeacher=${viewTeacher}">${s21}</a></td>
 		</tr>
 		
 		<tr>
@@ -162,13 +162,13 @@ div{
                     out.print("七八节课");  
                 %>
 			</th>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s22}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s23}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s24}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s25}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s26}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s27}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s28}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期一七八节&appliedTeacher=${viewTeacher}">${s22}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期二七八节&appliedTeacher=${viewTeacher}">${s23}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期三七八节&appliedTeacher=${viewTeacher}">${s24}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期四七八节&appliedTeacher=${viewTeacher}">${s25}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期五七八节&appliedTeacher=${viewTeacher}">${s26}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期六七八节&appliedTeacher=${viewTeacher}">${s27}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期日七八节&appliedTeacher=${viewTeacher}">${s28}</a></td>
 		</tr>
 		
 		<tr>
@@ -177,13 +177,13 @@ div{
                     out.print("晚课");  
                 %>
 			</th>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s29}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s30}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s31}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s32}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s33}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s34}</a></td>
-			<td><a href="<%=request.getContextPath()%>/apply.action?appliedTeacher=${viewTeacher}">${s35}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期一九十节&appliedTeacher=${viewTeacher}">${s29}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期二九十节&appliedTeacher=${viewTeacher}">${s30}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期三九十节&appliedTeacher=${viewTeacher}">${s31}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期四九十节&appliedTeacher=${viewTeacher}">${s32}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期五九十节&appliedTeacher=${viewTeacher}">${s33}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期六九十节&appliedTeacher=${viewTeacher}">${s34}</a></td>
+			<td><a href="<%=request.getContextPath()%>/apply.action?time=星期日九十节&appliedTeacher=${viewTeacher}">${s35}</a></td>
 		</tr>	
 	</table>
 	</center>
@@ -197,6 +197,8 @@ div{
     
     <a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
 			type=button value="返回" /></a>
+			<a href="javascript:;" onclick="location='StudentIndex.jsp'"><input
+			type=button value="返回主页" /></a>
 </div>
 </body>
 </html>

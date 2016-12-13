@@ -48,6 +48,9 @@ public class StudentsAction {
 	
 	private String nname = new String();
 	
+	private String time;
+	private String t1 = "星期一一二节";
+	
 	/*********************mySql函数**************************/
 	private void connect() {
 		try {
@@ -124,8 +127,8 @@ public class StudentsAction {
 		for(int i = 0, len =sub.length; i < len; i ++){ //对得到的每一位教师分别处理
 			System.out.println("教师Id及其关系："+ sub[i]);
 			int len2 = sub[i].length();
-			if(sub[i].endsWith(A)) { //查询申请的教师
-				teacherId = sub[i].substring(0, len2 -2);//申请的教师的Id
+			if(sub[i].contains(":A")) { //查询申请的教师
+				teacherId = sub[i].substring(0, len2 - 8);//申请的教师的Id
 				System.out.println("申请的教师的Id：" + teacherId);
 				
 				String sql2 = "select * from teachers where userId = '" + teacherId + "'";
@@ -144,8 +147,8 @@ public class StudentsAction {
 					System.out.println(e.getMessage());
 				}
 				
-			}else if(sub[i].endsWith(B)){ //查询接受的教师
-				teacherId = sub[i].substring(0, len2 -2);
+			}else if(sub[i].contains(":B")){ //查询接受的教师
+				teacherId = sub[i].substring(0, len2 - 8);
 				System.out.println("接受的教师的Id：" + teacherId);
 				
 				String sql2 = "select * from teachers where userId = '" + teacherId + "'";
@@ -164,8 +167,8 @@ public class StudentsAction {
 					System.out.println(e.getMessage());
 				}
 				
-			}else if(sub[i].endsWith(C)){ //查询拒绝的教师
-				teacherId = sub[i].substring(0, len2 -2);
+			}else if(sub[i].contains(":C")){ //查询拒绝的教师
+				teacherId = sub[i].substring(0, len2 - 8);
 				System.out.println("拒绝的教师的Id：" + teacherId);
 				
 				String sql2 = "select * from teachers where userId = '" + teacherId + "'";
@@ -200,6 +203,11 @@ public class StudentsAction {
 		userId = UsersAction.ID;
 		ActionContext.getContext().put("studentID", userId);
 		System.out.println("当前学生的Id："+userId);
+		System.out.println("申请时间："+time);
+		
+		System.out.println("申请时间2："+getTime());
+		
+		System.out.println("教师："+getAppliedTeacher());
 		
 		int result = 0;
 		
@@ -220,7 +228,7 @@ public class StudentsAction {
 			System.out.println(e.getMessage());
 		}
 		
-		application = application + appliedTeacher + ":A;";//形成新的申请关系
+		application = application + appliedTeacher + ":A"+ time + ";";//形成新的申请关系
 		System.out.println("修改后学生的申请关系为：" + application);
 		
 		String sql2 = "update students set application = '"+application+"' where userid = '" + userId +"'";
@@ -432,4 +440,21 @@ public class StudentsAction {
 	public void setNname(String nname) {
 		this.nname = nname;
 	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getT1() {
+		return t1;
+	}
+
+	public void setT1(String t1) {
+		this.t1 = t1;
+	}
+
 }

@@ -32,7 +32,7 @@ body {
 	background-image: url(img/3.jpg);
 	background-attachment:fixed;
 	font-family: "微软雅黑";
-	font-size: 1.5em;
+	font-size: 1em;
 }
 
 h2{
@@ -76,7 +76,7 @@ div{
 		temp = ActionContext.getContext().get("searchTeacher").toString();
 		System.out.println(temp);
 		
-		String sql = "SELECT * FROM teachers WHERE CONCAT(`userid`,`name`,`introduce`,`college`) LIKE '%"+temp+"%'";
+		String sql = "SELECT * FROM teachers WHERE CONCAT(`userid`,`name`,`title`,`introduce`,`college`) LIKE '%"+temp+"%'";
 
         ResultSet rs = statement.executeQuery(sql);  
         
@@ -93,17 +93,49 @@ div{
                     out.print("姓名");  
                 %>
 			</th>
+			
 			<th>
 				<%  
                     out.print("学院");  
                 %>
 			</th>
-	
+			
+			<th>
+				<%  
+                    out.print("职称");  
+                %>
+			</th>
+			
+			<th>
+				<%  
+                    out.print("简介");  
+                %>
+			</th>
+			
+			<th>
+				<%  
+                    out.print("办公室");  
+                %>
+			</th>
+			
+			<th>
+				<%  
+                    out.print("电话");  
+                %>
+			</th>
+			
+			<th>
+				<%  
+                    out.print("邮箱");  
+                %>
+			</th>
+			
 			<th>
 				<%  
                     out.print("操作");  
                 %>
 			</th>
+	
 		</tr>
 
 		<%  
@@ -115,6 +147,7 @@ div{
                     out.print(rs.getString(2));  
                 %>
 			</td>
+			
 			<td>
 				<%  
                     out.print(rs.getString(10));  
@@ -122,8 +155,39 @@ div{
 			</td>
 			
 			<td>
+				<%  
+                    out.print(rs.getString(3));  
+                %>
+			</td>
+			
+			<td>
+				<%  
+                    out.print(rs.getString(7));  
+                %>
+			</td>
+			
+			<td>
+				<%  
+                    out.print(rs.getString(4));  
+                %>
+			</td>
+			
+			<td>
+				<%  
+                    out.print(rs.getString(5));  
+                %>
+			</td>
+			
+			<td>
+				<%  
+                    out.print(rs.getString(8));  
+                %>
+			</td>
+			
+			
+			<td>
 				<a
-				href="<%=request.getContextPath()%>/DetailTeacherInfo.action?userId=<%=rs.getString(9)%>">查看详细信息</a>
+				href="<%=request.getContextPath()%>/studentViewArrangement.action?viewTeacher=<%=rs.getString(9)%>">发出申请</a>
 				<%-- <a
 				href="<%=request.getContextPath()%>/Apply.action?userid=<%=rs.getString(12)%>">发出申请</a> --%>
 			</td>
@@ -143,6 +207,8 @@ div{
 </center>
 		<a href="javascript:;" onclick="location.href='javascript:history.go(-1);'"><input
 			type=button value="返回" /></a>
+			<a href="javascript:;" onclick="location='StudentIndex.jsp'"><input
+			type=button value="返回主页" /></a>
 	</div>
 </body>
 </html>
